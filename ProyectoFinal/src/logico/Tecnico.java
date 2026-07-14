@@ -29,7 +29,7 @@ public class Tecnico extends Persona {
 	}
 	
 	@Override
-	public int evaluarReqEspec() {
+	public int evaluarReqEspec(Oferta oferta) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

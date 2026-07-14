@@ -70,6 +70,6 @@ public abstract class Persona {
 		return id;
 	}
 	
-	public abstract int evaluarReqEspec();
+	public abstract int evaluarReqEspec(Oferta oferta);
 	
 }
