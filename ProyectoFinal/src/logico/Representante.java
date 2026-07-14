@@ -7,6 +7,7 @@ public class Representante {
 	private String cedula;
 	private String nombre;
 	private String cargo;
+	private Usuario usuario;
 	
 	public Representante(String cedula, String nombre, String cargo) {
 		super();
@@ -36,5 +37,11 @@ public class Representante {
 	}
 	public String getId() {
 		return id;
+	}
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 }
