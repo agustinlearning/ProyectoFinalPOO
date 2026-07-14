@@ -8,4 +8,8 @@ public class Bolsa {
 	public ArrayList<Solicitud> lasSolicitudes;
 	public ArrayList<Oferta> lasOfertas;
 	
+	
+	public ArrayList<Persona> conectarCandidatos(Oferta oferta){
+		return null;
+	}
 }
