@@ -1,15 +1,15 @@
 package logico;
 
 public abstract class Persona {
-	private String id;
-	private static int counterId;
-	private String nombre;
-	private Usuario usuario;
-	private float aspSalarial;
-	private boolean licencia;
-	private boolean dispMudar;
-	private String provincia;
-	private String sexo;
+	protected String id;
+	protected static int counterId;
+	protected String nombre;
+	protected Usuario usuario;
+	protected float aspSalarial;
+	protected boolean licencia;
+	protected boolean dispMudar;
+	protected String provincia;
+	protected String sexo;
 	
 	public Persona(String nombre, Usuario usuario, float aspSalarial, boolean licencia, boolean dispMudar,
 			String provincia, String sexo) {
