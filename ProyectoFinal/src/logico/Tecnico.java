@@ -4,9 +4,9 @@ public class Tecnico extends Persona {
 
 	private String areaTecnica;
 	private int anosExp;
-	public Tecnico(String nombre, Usuario usuario, float aspSalarial, boolean licencia, boolean dispMudar,
+	public Tecnico(String cedula, String nombre, Usuario usuario, float aspSalarial, boolean licencia, boolean dispMudar,
 			String provincia, String sexo, String areaTecnica, int anosExp) {
-		super(nombre, usuario, aspSalarial, licencia, dispMudar, provincia, sexo);
+		super(cedula, nombre, usuario, aspSalarial, licencia, dispMudar, provincia, sexo);
 		// TODO Auto-generated constructor stub
 		this.areaTecnica = areaTecnica;
 		this.anosExp = anosExp;
