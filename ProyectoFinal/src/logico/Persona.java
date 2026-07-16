@@ -3,6 +3,7 @@ package logico;
 public abstract class Persona {
 	protected String id;
 	protected static int counterId;
+	protected String cedula;
 	protected String nombre;
 	protected Usuario usuario;
 	protected float aspSalarial;
@@ -11,10 +12,11 @@ public abstract class Persona {
 	protected String provincia;
 	protected String sexo;
 	
-	public Persona(String nombre, Usuario usuario, float aspSalarial, boolean licencia, boolean dispMudar,
+	public Persona(String cedula, String nombre, Usuario usuario, float aspSalarial, boolean licencia, boolean dispMudar,
 			String provincia, String sexo) {
 		super();
 		this.id = ""+counterId++;
+		this.cedula = cedula;
 		this.nombre = nombre;
 		this.usuario = usuario;
 		this.aspSalarial = aspSalarial;
@@ -69,7 +71,16 @@ public abstract class Persona {
 	public String getId() {
 		return id;
 	}
+	public String getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
 	
 	public abstract int evaluarReqEspec(Oferta oferta);
+
+
 	
 }
