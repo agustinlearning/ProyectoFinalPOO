@@ -17,7 +17,6 @@ public class Bolsa {
 		this.lasSolicitudes = new ArrayList<>();
 		this.lasOfertas = new ArrayList<>();
 	}
-
 	
 	public static Bolsa getBolsa() {
 		if(bolsa == null) {
@@ -29,4 +28,29 @@ public class Bolsa {
 	public ArrayList<Persona> conectarCandidatos(Oferta oferta){
 		return null;
 	}
+	
+	public boolean registrarEmpresa(String rnc, Representante representante, String razonSocial, String ubicacion) {
+		boolean valido = false;
+		for(Empresa emp : lasEmpresas) {
+			if(emp.getRnc().equalsIgnoreCase(rnc)) { return false;}
+		}
+		Empresa empresa = new Empresa(rnc, representante, razonSocial, ubicacion);
+		lasEmpresas.add(empresa);
+		valido = true;
+		
+		return valido;
+	}
+	
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
