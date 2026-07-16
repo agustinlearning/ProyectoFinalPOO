@@ -1,5 +1,6 @@
 package logico;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Bolsa {
@@ -54,8 +55,15 @@ public class Bolsa {
 	public void crearOferta(Empresa empresa, String titulo, String descripcion, int salarioMin, int salarioMax, String provincia,
 			boolean needLicencia, boolean disMudarse, String tipoCandidato, float minCoincidencia, int cantPuestos,
 			int puestosTomados) {
+		if(empresa == null) {return;}
 		Oferta oferta = new Oferta(empresa, titulo, descripcion,salarioMin, salarioMax, provincia, needLicencia, disMudarse, tipoCandidato, minCoincidencia, cantPuestos,puestosTomados);
 		lasOfertas.add(oferta);	
+	}
+	
+	public void crearSolicitud(Persona persona, Oferta oferta) {
+		if(persona == null || oferta == null) {return;}
+		Solicitud solicitud = new Solicitud(persona, oferta, LocalDate.now());
+		lasSolicitudes.add(solicitud);
 	}
 	
 	
