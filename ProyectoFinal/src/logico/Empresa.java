@@ -10,13 +10,12 @@ public class Empresa {
 	private float kpi;
 	private String ubicacion;
 	
-	public Empresa(String rnc, Representante representante, String razonSocial, float kpi, String ubicacion) {
+	public Empresa(String rnc, Representante representante, String razonSocial, String ubicacion) {
 		super();
 		this.id = ""+counterId++;
 		this.rnc = rnc;
 		this.representante = representante;
 		this.razonSocial = razonSocial;
-		this.kpi = kpi;
 		this.ubicacion = ubicacion;
 	}
 	
