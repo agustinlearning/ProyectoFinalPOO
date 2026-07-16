@@ -30,8 +30,11 @@ public class Tecnico extends Persona {
 	
 	@Override
 	public int evaluarReqEspec(Oferta oferta) {
-		// TODO Auto-generated method stub
-		return 0;
+		int puntosExtra=0;
+		if(this.anosExp >= oferta.getAnosExpRequeridos()) {
+			puntosExtra += 5; // 5 porque si
+		}
+		return puntosExtra;
 	}
 
 

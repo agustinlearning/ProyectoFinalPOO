@@ -19,8 +19,12 @@ public class Universitario extends Persona {
 	
 	@Override
 	public int evaluarReqEspec(Oferta oferta) {
-		// TODO Auto-generated method stub
-		return 0;
+		int total=0;
+		if(oferta.getTitulo().equalsIgnoreCase(this.titulo)) {
+			total += 5;
+		}
+		
+		return total;
 	}
 
 }

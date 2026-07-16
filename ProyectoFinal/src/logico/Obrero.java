@@ -23,7 +23,10 @@ public class Obrero extends Persona {
 
 	@Override
 	public int evaluarReqEspec(Oferta oferta) {
-		// TODO Auto-generated method stub
+		int total=0;
+		for(String habilidad : habilidades) {
+			//if(oferta.)
+		}
 		return 0;
 	}
 
