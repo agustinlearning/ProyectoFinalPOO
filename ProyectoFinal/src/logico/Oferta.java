@@ -1,25 +1,6 @@
 package logico;
 
 public class Oferta {
-	public Oferta(Empresa empresa, String titulo, String descripcion, int salarioMin, int salarioMax, String provincia,
-			boolean needLicencia, boolean disMudarse, String tipoCandidato, float minCoincidencia, int cantPuestos,
-			int puestosTomados, String estado) {
-		super();
-		this.id = ""+counterId++;
-		this.empresa = empresa;
-		this.titulo = titulo;
-		this.descripcion = descripcion;
-		this.salarioMin = salarioMin;
-		this.salarioMax = salarioMax;
-		this.provincia = provincia;
-		this.needLicencia = needLicencia;
-		this.disMudarse = disMudarse;
-		this.tipoCandidato = tipoCandidato;
-		this.minCoincidencia = minCoincidencia;
-		this.cantPuestos = cantPuestos;
-		this.puestosTomados = puestosTomados;
-		this.estado = estado;
-	}
 	private String id;
 	private static int counterId=1;
 	private Empresa empresa;
@@ -36,6 +17,25 @@ public class Oferta {
 	private int puestosTomados;
 	private String estado;
 	
+	public Oferta(Empresa empresa, String titulo, String descripcion, int salarioMin, int salarioMax, String provincia,
+			boolean needLicencia, boolean disMudarse, String tipoCandidato, float minCoincidencia, int cantPuestos,
+			int puestosTomados) {
+		super();
+		this.id = ""+counterId++;
+		this.empresa = empresa;
+		this.titulo = titulo;
+		this.descripcion = descripcion;
+		this.salarioMin = salarioMin;
+		this.salarioMax = salarioMax;
+		this.provincia = provincia;
+		this.needLicencia = needLicencia;
+		this.disMudarse = disMudarse;
+		this.tipoCandidato = tipoCandidato;
+		this.minCoincidencia = minCoincidencia;
+		this.cantPuestos = cantPuestos;
+		this.puestosTomados = puestosTomados;
+		this.estado = "disponible";
+	}
 	
 	public Empresa getEmpresa() {
 		return empresa;
