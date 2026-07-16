@@ -13,13 +13,13 @@ public class Solicitud {
 	private String estado;
 	
 	
-	public Solicitud(Persona candidato, Oferta oferta, LocalDate fecha, float porCoincidencia) {
+	public Solicitud(Persona candidato, Oferta oferta, LocalDate fecha) {
 		super();
 		this.id = ""+counterId++;
 		this.candidato = candidato;
 		this.oferta = oferta;
 		this.fecha = fecha;
-		this.porCoincidencia = porCoincidencia;
+		this.porCoincidencia = 0; // dejar para el algoritmo de macheo mas adelante
 		this.estado = "disponible";
 	}
 
