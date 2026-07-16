@@ -18,8 +18,7 @@ public class Oferta {
 	private String estado;
 	
 	public Oferta(Empresa empresa, String titulo, String descripcion, int salarioMin, int salarioMax, String provincia,
-			boolean needLicencia, boolean disMudarse, String tipoCandidato, float minCoincidencia, int cantPuestos,
-			int puestosTomados) {
+			boolean needLicencia, boolean disMudarse, String tipoCandidato, float minCoincidencia, int cantPuestos) {
 		super();
 		this.id = ""+counterId++;
 		this.empresa = empresa;
@@ -33,7 +32,7 @@ public class Oferta {
 		this.tipoCandidato = tipoCandidato;
 		this.minCoincidencia = minCoincidencia;
 		this.cantPuestos = cantPuestos;
-		this.puestosTomados = puestosTomados;
+		this.puestosTomados = 0;
 		this.estado = "disponible";
 	}
 	
