@@ -53,9 +53,9 @@ public class Bolsa {
 	}
 	
 	public void crearOferta(Empresa empresa, String titulo, String descripcion, int salarioMin, int salarioMax, String provincia,
-			boolean needLicencia, boolean disMudarse, String tipoCandidato, float minCoincidencia, int cantPuestos) {
+			boolean needLicencia, boolean disMudarse, String tipoCandidato, float minCoincidencia, int cantPuestos, int anosExpRequeridos) {
 		if(empresa == null) {return;}
-		Oferta oferta = new Oferta(empresa, titulo, descripcion,salarioMin, salarioMax, provincia, needLicencia, disMudarse, tipoCandidato, minCoincidencia, cantPuestos);
+		Oferta oferta = new Oferta(empresa, titulo, descripcion,salarioMin, salarioMax, provincia, needLicencia, disMudarse, tipoCandidato, minCoincidencia, cantPuestos, anosExpRequeridos);
 		lasOfertas.add(oferta);	
 	}
 	
@@ -95,20 +95,10 @@ public class Bolsa {
 		// resolver la falta del puntosAcumulados en las personas para obtener criterio de ordenamiento
 		//estasPersonas.sort(c);
 				
-		
+
 		return estasPersonas;
 	}
 	
 	
 	
 }
-
-
-
-
-
-
-
-
-
-
