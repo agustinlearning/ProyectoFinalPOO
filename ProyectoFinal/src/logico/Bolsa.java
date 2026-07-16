@@ -32,7 +32,7 @@ public class Bolsa {
 	public boolean registrarEmpresa(String rnc, Representante representante, String razonSocial, String ubicacion) {
 		boolean valido = false;
 		for(Empresa emp : lasEmpresas) {
-			if(emp.getRnc().equalsIgnoreCase(rnc)) { return false;}
+			if(emp.getRnc().equalsIgnoreCase(rnc)) {return false;}
 		}
 		Empresa empresa = new Empresa(rnc, representante, razonSocial, ubicacion);
 		lasEmpresas.add(empresa);
@@ -40,6 +40,19 @@ public class Bolsa {
 		
 		return valido;
 	}
+	
+	public boolean registraPersona(Persona persona) {
+		boolean valido=false;
+		for(Persona per : lasPersonas) {
+			if(per.getCedula().equalsIgnoreCase(persona.getCedula())) {return false;}
+		}
+		lasPersonas.add(persona);
+		valido = true;
+		return valido;
+	}
+	
+
+	
 	
 	
 	
