@@ -53,10 +53,9 @@ public class Bolsa {
 	}
 	
 	public void crearOferta(Empresa empresa, String titulo, String descripcion, int salarioMin, int salarioMax, String provincia,
-			boolean needLicencia, boolean disMudarse, String tipoCandidato, float minCoincidencia, int cantPuestos,
-			int puestosTomados) {
+			boolean needLicencia, boolean disMudarse, String tipoCandidato, float minCoincidencia, int cantPuestos) {
 		if(empresa == null) {return;}
-		Oferta oferta = new Oferta(empresa, titulo, descripcion,salarioMin, salarioMax, provincia, needLicencia, disMudarse, tipoCandidato, minCoincidencia, cantPuestos,puestosTomados);
+		Oferta oferta = new Oferta(empresa, titulo, descripcion,salarioMin, salarioMax, provincia, needLicencia, disMudarse, tipoCandidato, minCoincidencia, cantPuestos);
 		lasOfertas.add(oferta);	
 	}
 	
@@ -64,6 +63,40 @@ public class Bolsa {
 		if(persona == null || oferta == null) {return;}
 		Solicitud solicitud = new Solicitud(persona, oferta, LocalDate.now());
 		lasSolicitudes.add(solicitud);
+	}
+	
+	// prototipo del algoritmo de maceho
+	
+	public ArrayList<Persona> mejoresCandidatosOferta(Oferta oferta){
+		ArrayList<Persona> estasPersonas = new ArrayList<>();
+		int puntosAcumulados=0;
+		for(Persona per : lasPersonas) {
+			
+			if(oferta.isNeedLicencia() && !per.isLicencia()) {continue;}
+			if(oferta.getTipoCandidato().equalsIgnoreCase("universitario") && (per instanceof Obrero)) {continue;}
+			
+			if(oferta.getProvincia().equalsIgnoreCase(per.getProvincia())) { 
+				puntosAcumulados += 10;
+			} else if(per.isDispMudar()) {
+				puntosAcumulados += 5;
+			}
+			
+			// si esta en el rango salarial.
+			if(per.getAspSalarial() <= oferta.getSalarioMax() || per.getAspSalarial() >= oferta.getSalarioMin()) {
+				puntosAcumulados += 10;
+			}
+			// esto evaluara años de exp si es tecnico, la carrera si es universitario, y si es obrero las habilidades
+			puntosAcumulados += per.evaluarReqEspec(oferta); 
+			
+			if(puntosAcumulados >= oferta.getMinCoincidencia()) {
+				estasPersonas.add(per);
+			}
+		}
+		// resolver la falta del puntosAcumulados en las personas para obtener criterio de ordenamiento
+		//estasPersonas.sort(c);
+				
+		
+		return estasPersonas;
 	}
 	
 	
