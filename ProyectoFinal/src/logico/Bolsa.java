@@ -2,6 +2,7 @@ package logico;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Bolsa {
 	private static Bolsa bolsa;
@@ -65,10 +66,11 @@ public class Bolsa {
 		lasSolicitudes.add(solicitud);
 	}
 	
-	// prototipo del algoritmo de maceho
+	// prototipo del algoritmo de macheo
 	
 	public ArrayList<Persona> mejoresCandidatosOferta(Oferta oferta){
 		ArrayList<Persona> estasPersonas = new ArrayList<>();
+		ArrayList<CandidatoEvaluado> candidatos = new ArrayList<>();
 		int puntosAcumulados=0;
 		for(Persona per : lasPersonas) {
 			
@@ -80,7 +82,6 @@ public class Bolsa {
 			} else if(per.isDispMudar()) {
 				puntosAcumulados += 5;
 			}
-			
 			// si esta en el rango salarial.
 			if(per.getAspSalarial() <= oferta.getSalarioMax() || per.getAspSalarial() >= oferta.getSalarioMin()) {
 				puntosAcumulados += 10;
@@ -89,13 +90,15 @@ public class Bolsa {
 			puntosAcumulados += per.evaluarReqEspec(oferta); 
 			
 			if(puntosAcumulados >= oferta.getMinCoincidencia()) {
-				estasPersonas.add(per);
+				//estasPersonas.add(per);
+				CandidatoEvaluado evaluado = new CandidatoEvaluado(per, puntosAcumulados);
+				candidatos.add(evaluado);
 			}
 		}
-		// resolver la falta del puntosAcumulados en las personas para obtener criterio de ordenamiento
-		//estasPersonas.sort(c);
-				
-
+		candidatos.sort(Comparator.comparing(CandidatoEvaluado::getPuntajeTotal));
+		for(CandidatoEvaluado cand : candidatos) {
+			estasPersonas.add(cand.getCandidato());
+		}
 		return estasPersonas;
 	}
 	
