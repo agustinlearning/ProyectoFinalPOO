@@ -24,10 +24,14 @@ public class Obrero extends Persona {
 	@Override
 	public int evaluarReqEspec(Oferta oferta) {
 		int total=0;
-		for(String habilidad : habilidades) {
-			//if(oferta.)
+		for(String habilidadOferta : oferta.getLasHabilidades()) {
+			for(String habilidadObrero : habilidades) {
+				if(habilidadObrero.equalsIgnoreCase(habilidadOferta)) {
+					total += 5;
+				}
+			}
 		}
-		return 0;
+		return total;
 	}
 
 }
