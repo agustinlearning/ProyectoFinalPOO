@@ -54,9 +54,9 @@ public class Bolsa {
 	}
 	
 	public void crearOferta(Empresa empresa, String titulo, String descripcion, int salarioMin, int salarioMax, String provincia,
-			boolean needLicencia, boolean disMudarse, String tipoCandidato, float minCoincidencia, int cantPuestos, int anosExpRequeridos) {
+			boolean needLicencia, boolean disMudarse, String tipoCandidato, float minCoincidencia, int cantPuestos, int anosExpRequeridos, ArrayList<String> lasHabilidades) {
 		if(empresa == null) {return;}
-		Oferta oferta = new Oferta(empresa, titulo, descripcion,salarioMin, salarioMax, provincia, needLicencia, disMudarse, tipoCandidato, minCoincidencia, cantPuestos, anosExpRequeridos);
+		Oferta oferta = new Oferta(empresa, titulo, descripcion,salarioMin, salarioMax, provincia, needLicencia, disMudarse, tipoCandidato, minCoincidencia, cantPuestos, anosExpRequeridos, lasHabilidades);
 		lasOfertas.add(oferta);	
 	}
 	
