@@ -1,5 +1,7 @@
 package logico;
 
+import java.util.ArrayList;
+
 public class Oferta {
 	private String id;
 	private static int counterId=1;
@@ -16,10 +18,11 @@ public class Oferta {
 	private int cantPuestos;
 	private int puestosTomados;
 	private int anosExpRequeridos;
+	private ArrayList<String> lasHabilidades;
 	private String estado;
 	
 	public Oferta(Empresa empresa, String titulo, String descripcion, int salarioMin, int salarioMax, String provincia,
-			boolean needLicencia, boolean disMudarse, String tipoCandidato, float minCoincidencia, int cantPuestos,int anosExpRequeridos) {
+			boolean needLicencia, boolean disMudarse, String tipoCandidato, float minCoincidencia, int cantPuestos,int anosExpRequeridos, ArrayList<String> lasHabilidades) {
 		super();
 		this.id = ""+counterId++;
 		this.empresa = empresa;
@@ -35,6 +38,7 @@ public class Oferta {
 		this.cantPuestos = cantPuestos;
 		this.puestosTomados = 0;
 		this.anosExpRequeridos = anosExpRequeridos;
+		this.lasHabilidades = lasHabilidades;
 		this.estado = "disponible";
 	}
 	
@@ -125,6 +129,14 @@ public class Oferta {
 
 	public void setAnosExpRequeridos(int anosExpRequeridos) {
 		this.anosExpRequeridos = anosExpRequeridos;
+	}
+
+	public ArrayList<String> getLasHabilidades() {
+		return lasHabilidades;
+	}
+
+	public void setLasHabilidades(ArrayList<String> lasHabilidades) {
+		this.lasHabilidades = lasHabilidades;
 	}
 	
 	
