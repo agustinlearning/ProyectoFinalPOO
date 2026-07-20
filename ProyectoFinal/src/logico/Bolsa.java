@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class Bolsa {
-	private static Bolsa bolsa;
+	private static Bolsa bolsa  = null;
 
 	public ArrayList<Empresa> lasEmpresas;
 	public ArrayList<Persona> lasPersonas;
 	public ArrayList<Solicitud> lasSolicitudes;
 	public ArrayList<Oferta> lasOfertas;
+	public ArrayList<Usuario> losUsuarios; 
 	
 	private Bolsa() {
 		super();
@@ -18,6 +19,7 @@ public class Bolsa {
 		this.lasPersonas = new ArrayList<>();
 		this.lasSolicitudes = new ArrayList<>();
 		this.lasOfertas = new ArrayList<>();
+		this.losUsuarios = new ArrayList<>();
 	}
 	
 	public static Bolsa getBolsa() {
