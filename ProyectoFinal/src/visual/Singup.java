@@ -81,7 +81,9 @@ public class Singup extends JFrame {
 		button.setActionCommand("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				dispose();
+				Login login = new Login();
+				login.setVisible(true);
 			}
 		});
 		button.setBounds(272, 259, 128, 27);

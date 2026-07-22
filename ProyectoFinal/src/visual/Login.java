@@ -87,6 +87,9 @@ public class Login extends JFrame {
 		button.setActionCommand("Registrarse");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Singup registro = new Singup();
+				registro.setVisible(true);
 				
 			}
 		});
