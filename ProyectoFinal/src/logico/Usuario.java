@@ -3,6 +3,7 @@ package logico;
 public class Usuario {
 	private String id;
 	private static int counterId = 1;
+	private String username;
 	private String email;
 	private String contrasena;
 	private String rol;
@@ -11,6 +12,8 @@ public class Usuario {
 		super();
 		this.id = ""+counterId++;
 		this.email = email;
+		String[] split = email.split("@");
+		this.username = split[0];
 		this.contrasena = contrasena;
 		this.rol = rol;
 	}
@@ -35,5 +38,9 @@ public class Usuario {
 	}
 	public String getId() {
 		return id;
+	}
+
+	public String getUsername() {
+		return username;
 	}
 }
