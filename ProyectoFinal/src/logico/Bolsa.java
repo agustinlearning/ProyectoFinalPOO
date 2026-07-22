@@ -104,6 +104,17 @@ public class Bolsa {
 		return estasPersonas;
 	}
 	
+	public Usuario buscarUsuarioPorUsername(String username)
+	{
+		for (Usuario usuario : losUsuarios) {
+			if(usuario.getUsername().equalsIgnoreCase(username))
+			{
+				return usuario;
+			}
+		}
+		return null;
+	}
+	
 	
 	
 	
