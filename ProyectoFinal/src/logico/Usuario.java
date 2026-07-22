@@ -2,24 +2,24 @@ package logico;
 
 public class Usuario {
 	private String id;
-	private static int counterId;
-	private String emal;
+	private static int counterId = 1;
+	private String email;
 	private String contrasena;
 	private String rol;
 	
-	public Usuario(String emal, String contrasena, String rol) {
+	public Usuario(String email, String contrasena, String rol) {
 		super();
 		this.id = ""+counterId++;
-		this.emal = emal;
+		this.email = email;
 		this.contrasena = contrasena;
 		this.rol = rol;
 	}
 	
-	public String getEmal() {
-		return emal;
+	public String getEmail() {
+		return email;
 	}
-	public void setEmal(String emal) {
-		this.emal = emal;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getContrasena() {
 		return contrasena;
