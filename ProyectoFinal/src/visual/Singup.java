@@ -20,7 +20,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-public class Singin extends JFrame {
+public class Singup extends JFrame {
 
 	private JPanel contentPane;
 	private JFormattedTextField txtPassword;
@@ -32,7 +32,7 @@ public class Singin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Singin frame = new Singin();
+					Singup frame = new Singup();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +44,7 @@ public class Singin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Singin() {
+	public Singup() {
 		setTitle("Sing in");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 400);
