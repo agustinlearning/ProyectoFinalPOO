@@ -45,7 +45,7 @@ public class Singup extends JFrame {
 	 * Create the frame.
 	 */
 	public Singup() {
-		setTitle("Sing in");
+		setTitle("Sing up");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 400);
 		setResizable(false);
@@ -96,8 +96,8 @@ public class Singup extends JFrame {
 		lblTipo.setBounds(77, 190, 169, 38);
 		panel.add(lblTipo);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Empresa", "Persona"}));
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Empresa", "Persona"}));
 		comboBox.setBounds(272, 196, 128, 26);
 		panel.add(comboBox);
 		
