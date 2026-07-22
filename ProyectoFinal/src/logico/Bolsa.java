@@ -85,7 +85,7 @@ public class Bolsa {
 				puntosAcumulados += 5;
 			}
 			// si esta en el rango salarial.
-			if(per.getAspSalarial() <= oferta.getSalarioMax() || per.getAspSalarial() >= oferta.getSalarioMin()) {
+			if(per.getAspSalarial() <= oferta.getSalarioMax() && per.getAspSalarial() >= oferta.getSalarioMin()) {
 				puntosAcumulados += 10;
 			}
 			// esto evaluara años de exp si es tecnico, la carrera si es universitario, y si es obrero las habilidades
