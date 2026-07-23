@@ -7,6 +7,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+
+import logico.Bolsa;
+import logico.Usuario;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -83,9 +87,9 @@ public class Login extends JFrame {
 		lblNewLabel_1.setBounds(52, 256, 223, 20);
 		panel.add(lblNewLabel_1);
 		
-		Button button = new Button("Registrate");
-		button.setActionCommand("Registrarse");
-		button.addActionListener(new ActionListener() {
+		Button btnSingup = new Button("Registrate");
+		btnSingup.setActionCommand("Registrarse");
+		btnSingup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				Singup registro = new Singup();
@@ -93,8 +97,8 @@ public class Login extends JFrame {
 				
 			}
 		});
-		button.setBounds(261, 249, 100, 27);
-		panel.add(button);
+		btnSingup.setBounds(261, 249, 100, 27);
+		panel.add(btnSingup);
 		
 		Panel panel_1 = new Panel();
 		contentPane.add(panel_1, BorderLayout.SOUTH);
@@ -103,12 +107,28 @@ public class Login extends JFrame {
 		JToolBar toolBar = new JToolBar();
 		panel_1.add(toolBar, BorderLayout.EAST);
 		
-		JButton btnNewButton = new JButton("Iniciar sesion");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnLogin = new JButton("Iniciar sesion");
+		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Usuario user = Bolsa.getBolsa().buscarUsuarioPorUsername(txtUsername.getText());
+				if(user != null)
+				{
+					if(user.getContrasena().equalsIgnoreCase(txtPassword.getText()))
+					{
+						
+					}
+					else {
+						
+					}
+				}
+				else {
+					
+				}
+				
+				
 			}
 		});
-		toolBar.add(btnNewButton);
+		toolBar.add(btnLogin);
 		
 		JButton btnNewButton_1 = new JButton("Cancelar");
 		toolBar.add(btnNewButton_1);
