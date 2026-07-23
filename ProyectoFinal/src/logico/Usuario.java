@@ -12,8 +12,7 @@ public class Usuario {
 		super();
 		this.id = ""+counterId++;
 		this.email = email;
-		String[] split = email.split("@");
-		this.username = split[0];
+		this.username = (email.split("@"))[0];	
 		this.contrasena = contrasena;
 		this.rol = rol;
 	}
