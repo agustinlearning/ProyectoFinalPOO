@@ -16,6 +16,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -23,12 +24,16 @@ import java.awt.Panel;
 import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.FlowLayout;
 
 public class Login extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUsername;
 	private JFormattedTextField txtPassword;
+	private JPanel panel_1;
+	private JButton btnLogin;
+	private JButton btnCancel;
 
 	/**
 	 * Launch the application.
@@ -75,6 +80,7 @@ public class Login extends JFrame {
 		panel.add(lblContrasea);
 		
 		txtUsername = new JTextField();
+		txtUsername.setToolTipText("");
 		txtUsername.setBounds(261, 78, 259, 26);
 		panel.add(txtUsername);
 		txtUsername.setColumns(10);
@@ -84,7 +90,7 @@ public class Login extends JFrame {
 		panel.add(txtPassword);
 		
 		JLabel lblNewLabel_1 = new JLabel("\u00BFNo tienes una cuenta?");
-		lblNewLabel_1.setBounds(52, 256, 223, 20);
+		lblNewLabel_1.setBounds(29, 249, 223, 20);
 		panel.add(lblNewLabel_1);
 		
 		Button btnSingup = new Button("Registrate");
@@ -100,14 +106,12 @@ public class Login extends JFrame {
 		btnSingup.setBounds(261, 249, 100, 27);
 		panel.add(btnSingup);
 		
-		Panel panel_1 = new Panel();
+		panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.SOUTH);
-		panel_1.setLayout(new BorderLayout(0, 0));
+		panel_1.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
-		JToolBar toolBar = new JToolBar();
-		panel_1.add(toolBar, BorderLayout.EAST);
-		
-		JButton btnLogin = new JButton("Iniciar sesion");
+		btnLogin = new JButton("Iniciar sesion");
+		panel_1.add(btnLogin);
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Usuario user = Bolsa.getBolsa().buscarUsuarioPorUsername(txtUsername.getText());
@@ -115,7 +119,7 @@ public class Login extends JFrame {
 				{
 					if(user.getContrasena().equalsIgnoreCase(txtPassword.getText()))
 					{
-						
+						JOptionPane.showMessageDialog(null, "Inicio de sesion correcto");
 					}
 					else {
 						
@@ -128,9 +132,8 @@ public class Login extends JFrame {
 				
 			}
 		});
-		toolBar.add(btnLogin);
 		
-		JButton btnNewButton_1 = new JButton("Cancelar");
-		toolBar.add(btnNewButton_1);
+		btnCancel = new JButton("Cancelar");
+		panel_1.add(btnCancel);
 	}
 }

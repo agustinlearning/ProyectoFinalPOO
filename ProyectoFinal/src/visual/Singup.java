@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.FlowLayout;
 
 public class Singup extends JFrame {
 
@@ -104,21 +105,18 @@ public class Singup extends JFrame {
 		cbxTipo.setBounds(272, 196, 128, 26);
 		panel.add(cbxTipo);
 		
-		Panel panel_1 = new Panel();
-		contentPane.add(panel_1, BorderLayout.SOUTH);
-		panel_1.setLayout(new BorderLayout(0, 0));
-		
-		JToolBar toolBar = new JToolBar();
-		panel_1.add(toolBar, BorderLayout.EAST);
+		JPanel panel_2 = new JPanel();
+		contentPane.add(panel_2, BorderLayout.SOUTH);
+		panel_2.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
 		JButton btnSingup = new JButton("Registrar");
+		panel_2.add(btnSingup);
 		btnSingup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		toolBar.add(btnSingup);
 		
 		JButton btnCancel = new JButton("Cancelar");
-		toolBar.add(btnCancel);
+		panel_2.add(btnCancel);
 	}
 }
