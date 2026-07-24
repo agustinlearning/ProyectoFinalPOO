@@ -12,11 +12,16 @@ import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+
+import logico.Bolsa;
+import logico.Usuario;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.FlowLayout;
@@ -113,6 +118,19 @@ public class Singup extends JFrame {
 		panel_2.add(btnSingup);
 		btnSingup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(txtEmail.getText().equalsIgnoreCase("") || txtPassword.getText().equalsIgnoreCase(""))
+				{
+					JOptionPane.showMessageDialog(null, "Termine de llenar los campos");
+				}
+				else {
+					Usuario user = new Usuario(txtEmail.getText(),txtPassword.getText(),cbxTipo.getSelectedItem().toString());
+					Bolsa.getBolsa().registrarUsuario(user);
+					JOptionPane.showMessageDialog(null, "Registro exitoso, su nombre de usuario es: " + user.getUsername());
+					dispose();
+					Login login = new Login();
+					login.setVisible(true);
+					
+				}
 			}
 		});
 		
