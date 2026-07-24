@@ -24,6 +24,7 @@ public class Singup extends JFrame {
 
 	private JPanel contentPane;
 	private JFormattedTextField txtPassword;
+	private JFormattedTextField txtEmail;
 
 	/**
 	 * Launch the application.
@@ -77,19 +78,19 @@ public class Singup extends JFrame {
 		lblNewLabel_1.setBounds(52, 266, 223, 20);
 		panel.add(lblNewLabel_1);
 		
-		Button button = new Button("Inicia sesion");
-		button.setActionCommand("");
-		button.addActionListener(new ActionListener() {
+		Button btnLogin = new Button("Inicia sesion");
+		btnLogin.setActionCommand("");
+		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				Login login = new Login();
 				login.setVisible(true);
 			}
 		});
-		button.setBounds(272, 259, 128, 27);
-		panel.add(button);
+		btnLogin.setBounds(272, 259, 128, 27);
+		panel.add(btnLogin);
 		
-		JFormattedTextField txtEmail = new JFormattedTextField();
+		txtEmail = new JFormattedTextField();
 		txtEmail.setBounds(272, 44, 257, 26);
 		panel.add(txtEmail);
 		
@@ -98,10 +99,10 @@ public class Singup extends JFrame {
 		lblTipo.setBounds(77, 190, 169, 38);
 		panel.add(lblTipo);
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {"Empresa", "Persona"}));
-		comboBox.setBounds(272, 196, 128, 26);
-		panel.add(comboBox);
+		JComboBox<String> cbxTipo = new JComboBox<String>();
+		cbxTipo.setModel(new DefaultComboBoxModel<String>(new String[] {"Empresa", "Persona"}));
+		cbxTipo.setBounds(272, 196, 128, 26);
+		panel.add(cbxTipo);
 		
 		Panel panel_1 = new Panel();
 		contentPane.add(panel_1, BorderLayout.SOUTH);
@@ -110,14 +111,14 @@ public class Singup extends JFrame {
 		JToolBar toolBar = new JToolBar();
 		panel_1.add(toolBar, BorderLayout.EAST);
 		
-		JButton btnNewButton = new JButton("Registrar");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnSingup = new JButton("Registrar");
+		btnSingup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		toolBar.add(btnNewButton);
+		toolBar.add(btnSingup);
 		
-		JButton btnNewButton_1 = new JButton("Cancelar");
-		toolBar.add(btnNewButton_1);
+		JButton btnCancel = new JButton("Cancelar");
+		toolBar.add(btnCancel);
 	}
 }

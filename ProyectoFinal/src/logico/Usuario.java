@@ -8,6 +8,7 @@ public class Usuario {
 	private String contrasena;
 	private String rol;
 	
+	
 	public Usuario(String email, String contrasena, String rol) {
 		super();
 		this.id = ""+counterId++;
