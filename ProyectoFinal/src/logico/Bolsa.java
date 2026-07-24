@@ -114,6 +114,10 @@ public class Bolsa {
 		}
 		return null;
 	}
+
+	public void registrarUsuario(Usuario U1) {
+		losUsuarios.add(U1);
+	}
 	
 	
 	
