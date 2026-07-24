@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import logico.Bolsa;
+import logico.Sesion;
 import logico.Usuario;
 
 import javax.swing.JLabel;
@@ -120,13 +121,23 @@ public class Login extends JFrame {
 					if(user.getContrasena().equalsIgnoreCase(txtPassword.getText()))
 					{
 						JOptionPane.showMessageDialog(null, "Inicio de sesion correcto");
+						Sesion actual = new Sesion(user);
+						Principal main = new Principal(actual);
+						dispose();
+						main.setVisible(true);
 					}
 					else {
-						
+						JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
 					}
 				}
 				else {
-					
+					int opt = JOptionPane.showConfirmDialog(null, "Usuario no encontrado, ¿desea crear una cuenta?");
+					if(opt == JOptionPane.OK_OPTION)
+					{
+						dispose();
+						Singup registro = new Singup();
+						registro.setVisible(true);
+					}
 				}
 				
 				
