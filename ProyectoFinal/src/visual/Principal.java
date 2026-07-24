@@ -11,6 +11,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import logico.Sesion;
+
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
@@ -22,6 +25,13 @@ public class Principal extends JFrame {
 	private JMenu mnEmpleados;
 	private JMenu mnOfertas;
 	private JMenu mnPerfil;
+	private JMenuItem mntmCrearSolicitud;
+	private JMenuItem mntmNewMenuItem;
+	private JMenuItem mntmListarOfertas;
+	private JMenuItem mntmRegistrarOferta;
+	private JPanel panel;
+	private JMenuBar menuBar;
+	private static Sesion mySesion = null;
 
 	/**
 	 * Launch the application.
@@ -30,7 +40,7 @@ public class Principal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Principal frame = new Principal();
+					Principal frame = new Principal(mySesion);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,39 +52,43 @@ public class Principal extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Principal() {
+	public Principal(Sesion sesion) {
+		mySesion = sesion;
+		
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 834, 529);
 		setVisible(false);
 		
-		JMenuBar menuBar = new JMenuBar();
+		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
 		mnEmpleados = new JMenu("Solicitudes");
+		mnEmpleados.setEnabled(false);
 		mnEmpleados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		menuBar.add(mnEmpleados);
 		
-		JMenuItem mntmCrearSolicitud = new JMenuItem("Registrar");
+		mntmCrearSolicitud = new JMenuItem("Registrar");
 		mntmCrearSolicitud.setHorizontalAlignment(SwingConstants.CENTER);
 		mnEmpleados.add(mntmCrearSolicitud);
 		
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Listar");
+		mntmNewMenuItem = new JMenuItem("Listar");
 		mnEmpleados.add(mntmNewMenuItem);
 		
 		mnOfertas = new JMenu("Ofertas");
+		mnOfertas.setEnabled(false);
 		menuBar.add(mnOfertas);
 		
-		JMenuItem mntmRegistrarOferta = new JMenuItem("Registrar");
+		mntmRegistrarOferta = new JMenuItem("Registrar");
 		mntmRegistrarOferta.setHorizontalAlignment(SwingConstants.LEFT);
 		mnOfertas.add(mntmRegistrarOferta);
 		
-		JMenuItem mntmListarOfertas = new JMenuItem("Listar");
+		mntmListarOfertas = new JMenuItem("Listar");
 		mnOfertas.add(mntmListarOfertas);
 		
 		mnPerfil = new JMenu("Perfil");
@@ -88,7 +102,7 @@ public class Principal extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 	}
 
