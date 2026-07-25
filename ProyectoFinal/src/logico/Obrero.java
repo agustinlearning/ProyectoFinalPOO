@@ -27,14 +27,16 @@ public class Obrero extends Persona {
 
 	@Override
 	public int evaluarReqEspec(Oferta oferta) {
-		int total=0;
+		int total=0, habilidadesCoinciden=0;
+		int habilidadesTotales= oferta.getLasHabilidades().size();
 		for(String habilidadOferta : oferta.getLasHabilidades()) {
 			for(String habilidadObrero : habilidades) {
 				if(habilidadObrero.equalsIgnoreCase(habilidadOferta)) {
-					total += 5;
+					habilidadesCoinciden++;
 				}
 			}
 		}
+		total = (habilidadesCoinciden / habilidadesTotales) * 50;
 		return total;
 	}
 
