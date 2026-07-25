@@ -22,6 +22,7 @@ public class Bolsa implements Serializable{
 	private int counterPersonas=1;
 	private int counterSolicitudes=1;
 	private int counterOfertas=1;
+	private int counterRepresentantes=1;
 
 	public ArrayList<Empresa> lasEmpresas;
 	public ArrayList<Persona> lasPersonas;
@@ -66,6 +67,12 @@ public class Bolsa implements Serializable{
 	public String generarIdOfertas() {
         String nuevoId = "" + counterOfertas;
         counterOfertas++;
+        return nuevoId;
+    }
+	
+	public String generarIdRepresentantes() {
+        String nuevoId = "" + counterRepresentantes;
+        counterRepresentantes++;
         return nuevoId;
     }
 	

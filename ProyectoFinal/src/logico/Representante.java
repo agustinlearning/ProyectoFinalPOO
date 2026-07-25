@@ -9,15 +9,14 @@ public class Representante implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private String id;
-	private static int counterId=1;
 	private String cedula;
 	private String nombre;
 	private String cargo;
 	private Usuario usuario;
 	
-	public Representante(String cedula, String nombre, String cargo) {
+	public Representante(String id,String cedula, String nombre, String cargo) {
 		super();
-		this.id = ""+counterId++;
+		this.id = id;
 		this.cedula = cedula;
 		this.nombre = nombre;
 		this.cargo = cargo;
