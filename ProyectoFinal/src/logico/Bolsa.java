@@ -131,10 +131,10 @@ public class Bolsa implements Serializable{
 	}
 	
 	public void crearOferta(Empresa empresa, String titulo, String descripcion, int salarioMin, int salarioMax, String provincia,
-			boolean needLicencia, boolean disMudarse, String tipoCandidato, float minCoincidencia, int cantPuestos, int anosExpRequeridos, ArrayList<String> lasHabilidades) {
+			boolean needLicencia, boolean disMudarse, String tipoCandidato, float minCoincidencia, int cantPuestos, int anosExpRequeridos, String areaTecnica,ArrayList<String> lasHabilidades) {
 		if(empresa == null) {return;}
 		String nuevoId = generarIdOfertas();
-		Oferta oferta = new Oferta(nuevoId,empresa, titulo, descripcion,salarioMin, salarioMax, provincia, needLicencia, disMudarse, tipoCandidato, minCoincidencia, cantPuestos, anosExpRequeridos, lasHabilidades);
+		Oferta oferta = new Oferta(nuevoId,empresa, titulo, descripcion,salarioMin, salarioMax, provincia, needLicencia, disMudarse, tipoCandidato, minCoincidencia, cantPuestos, anosExpRequeridos, areaTecnica,lasHabilidades);
 		lasOfertas.add(oferta);	
 	}
 	
@@ -157,13 +157,13 @@ public class Bolsa implements Serializable{
 			if(oferta.getTipoCandidato().equalsIgnoreCase("universitario") && (per instanceof Obrero)) {continue;}
 			
 			if(oferta.getProvincia().equalsIgnoreCase(per.getProvincia())) { 
-				puntosAcumulados += 10;
+				puntosAcumulados += 25;
 			} else if(per.isDispMudar()) {
-				puntosAcumulados += 5;
+				puntosAcumulados += 15;
 			}
 			// si esta en el rango salarial.
 			if(per.getAspSalarial() <= oferta.getSalarioMax() && per.getAspSalarial() >= oferta.getSalarioMin()) {
-				puntosAcumulados += 10;
+				puntosAcumulados += 25;
 			}
 			// esto evaluara años de exp si es tecnico, la carrera si es universitario, y si es obrero las habilidades
 			puntosAcumulados += per.evaluarReqEspec(oferta); 

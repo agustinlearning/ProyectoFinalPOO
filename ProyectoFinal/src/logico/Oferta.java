@@ -23,12 +23,13 @@ public class Oferta implements Serializable{
 	private int cantPuestos;
 	private int puestosTomados;
 	private int anosExpRequeridos;
+	private String areaTecnica;
 	private ArrayList<String> lasHabilidades;
 	private LocalDate fechaLimite;
 	private String estado;
 	
 	public Oferta(String id,Empresa empresa, String titulo, String descripcion, int salarioMin, int salarioMax, String provincia,
-			boolean needLicencia, boolean disMudarse, String tipoCandidato, float minCoincidencia, int cantPuestos,int anosExpRequeridos, ArrayList<String> lasHabilidades) {
+			boolean needLicencia, boolean disMudarse, String tipoCandidato, float minCoincidencia, int cantPuestos,int anosExpRequeridos, String areaTecnica,ArrayList<String> lasHabilidades) {
 		super();
 		this.id = id;
 		this.empresa = empresa;
@@ -44,6 +45,7 @@ public class Oferta implements Serializable{
 		this.cantPuestos = cantPuestos;
 		this.puestosTomados = 0;
 		this.anosExpRequeridos = anosExpRequeridos;
+		this.areaTecnica = areaTecnica;
 		this.lasHabilidades = lasHabilidades;
 		this.setFechaLimite(LocalDate.now().plusDays(30));
 		this.estado = "disponible";
@@ -152,6 +154,14 @@ public class Oferta implements Serializable{
 
 	public void setFechaLimite(LocalDate fechaLimite) {
 		this.fechaLimite = fechaLimite;
+	}
+
+	public String getAreaTecnica() {
+		return areaTecnica;
+	}
+
+	public void setAreaTecnica(String areaTecnica) {
+		this.areaTecnica = areaTecnica;
 	}
 	
 	
