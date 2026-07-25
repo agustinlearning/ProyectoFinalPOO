@@ -1,6 +1,7 @@
 package logico;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Oferta implements Serializable{
@@ -23,6 +24,7 @@ public class Oferta implements Serializable{
 	private int puestosTomados;
 	private int anosExpRequeridos;
 	private ArrayList<String> lasHabilidades;
+	private LocalDate fechaLimite;
 	private String estado;
 	
 	public Oferta(String id,Empresa empresa, String titulo, String descripcion, int salarioMin, int salarioMax, String provincia,
@@ -43,6 +45,7 @@ public class Oferta implements Serializable{
 		this.puestosTomados = 0;
 		this.anosExpRequeridos = anosExpRequeridos;
 		this.lasHabilidades = lasHabilidades;
+		this.setFechaLimite(LocalDate.now().plusDays(30));
 		this.estado = "disponible";
 	}
 	
@@ -141,6 +144,14 @@ public class Oferta implements Serializable{
 
 	public void setLasHabilidades(ArrayList<String> lasHabilidades) {
 		this.lasHabilidades = lasHabilidades;
+	}
+
+	public LocalDate getFechaLimite() {
+		return fechaLimite;
+	}
+
+	public void setFechaLimite(LocalDate fechaLimite) {
+		this.fechaLimite = fechaLimite;
 	}
 	
 	
