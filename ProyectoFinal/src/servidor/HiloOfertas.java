@@ -25,8 +25,8 @@ public class HiloOfertas implements Runnable{
                             }
                         }
                     }
-    				Thread.sleep(60000); // 1 min
                 }
+                Thread.sleep(60000); // 1 min
                 
 			} catch(InterruptedException e) {
 				break;
