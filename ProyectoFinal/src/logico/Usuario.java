@@ -8,7 +8,6 @@ public class Usuario implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private String id;
-	private static int counterId = 1;
 	private String username;
 	private String email;
 	private String contrasena;
@@ -17,9 +16,9 @@ public class Usuario implements Serializable{
 	private Empresa perfilE;
 	
 	
-	public Usuario(String email, String contrasena, String rol) {
+	public Usuario(String id, String email, String contrasena, String rol) {
 		super();
-		this.id = ""+counterId++;
+		this.id = id;
 		this.email = email;
 		this.username = (email.split("@"))[0];	
 		this.contrasena = contrasena;

@@ -124,7 +124,8 @@ public class Singup extends JFrame {
 					JOptionPane.showMessageDialog(null, "Termine de llenar los campos");
 				}
 				else {
-					Usuario user = new Usuario(txtEmail.getText(),txtPassword.getText(),cbxTipo.getSelectedItem().toString());
+					String nuevoId = Bolsa.getBolsa().generarIdUsuarios();
+					Usuario user = new Usuario(nuevoId,txtEmail.getText(),txtPassword.getText(),cbxTipo.getSelectedItem().toString());
 					Bolsa.getBolsa().registrarUsuario(user);
 					JOptionPane.showMessageDialog(null, "Registro exitoso, su nombre de usuario es: " + user.getUsername());
 					dispose();
