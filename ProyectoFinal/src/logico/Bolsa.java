@@ -17,6 +17,8 @@ public class Bolsa implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private static Bolsa bolsa  = null;
+	
+	private int counterEmpresas=1;
 
 	public ArrayList<Empresa> lasEmpresas;
 	public ArrayList<Persona> lasPersonas;
@@ -39,6 +41,14 @@ public class Bolsa implements Serializable{
 		}
 		return bolsa;
 	}
+	
+	public String generarIdEmpresa() {
+        String nuevoId = "" + counterEmpresas;
+        counterEmpresas++;
+        return nuevoId;
+    }
+	
+	
 	// guardamos a la bolsa con sus datos
 	public static void guardarSistema() {
 		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("bolsa_datos.dat"))) {
@@ -68,7 +78,8 @@ public class Bolsa implements Serializable{
 		for(Empresa emp : lasEmpresas) {
 			if(emp.getRnc().equalsIgnoreCase(rnc)) {return false;}
 		}
-		Empresa empresa = new Empresa(rnc, representante, razonSocial, ubicacion);
+		String nuevoId = generarIdEmpresa();
+		Empresa empresa = new Empresa(nuevoId,rnc, representante, razonSocial, ubicacion);
 		lasEmpresas.add(empresa);
 		valido = true;
 		
