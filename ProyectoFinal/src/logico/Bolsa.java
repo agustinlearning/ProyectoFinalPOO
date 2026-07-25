@@ -1,10 +1,16 @@
 package logico;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class Bolsa {
+public class Bolsa implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private static Bolsa bolsa  = null;
 
 	public ArrayList<Empresa> lasEmpresas;
