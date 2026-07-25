@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import logico.Bolsa;
 import logico.Oferta;
+import logico.Solicitud;
 
 public class HiloOfertas implements Runnable{
 	
@@ -16,8 +17,13 @@ public class HiloOfertas implements Runnable{
 
                 for (Oferta oferta : Bolsa.getBolsa().lasOfertas) { 
                     if (oferta.getEstado().equalsIgnoreCase("disponible") && oferta.getFechaLimite().isBefore(hoy)) {
-                        oferta.setEstado("agotada"); 
-                        
+                        oferta.setEstado("Cerrada"); 
+                        for (Solicitud sol : Bolsa.getBolsa().lasSolicitudes) {
+                            if (sol.getOferta().getId().equals(oferta.getId()) && sol.getEstado().equals("Pendiente")) {
+                                sol.setEstado("Cerrada");
+                                //System.out.println(sol.getId() + " actualizada.");
+                            }
+                        }
                     }
     				Thread.sleep(60000); // 1 min
                 }
