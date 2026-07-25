@@ -19,6 +19,8 @@ public class Bolsa implements Serializable{
 	private static Bolsa bolsa  = null;
 	
 	private int counterEmpresas=1;
+	private int counterPersonas=1;
+	private int counterSolicitudes=1;
 
 	public ArrayList<Empresa> lasEmpresas;
 	public ArrayList<Persona> lasPersonas;
@@ -48,6 +50,17 @@ public class Bolsa implements Serializable{
         return nuevoId;
     }
 	
+	public String generarIdPersonas() {
+        String nuevoId = "" + counterPersonas;
+        counterPersonas++;
+        return nuevoId;
+    }
+	
+	public String generarIdSolicitudes() {
+        String nuevoId = "" + counterSolicitudes;
+        counterSolicitudes++;
+        return nuevoId;
+    }
 	
 	// guardamos a la bolsa con sus datos
 	public static void guardarSistema() {
@@ -105,7 +118,8 @@ public class Bolsa implements Serializable{
 	
 	public void crearSolicitud(Persona persona, Oferta oferta) {
 		if(persona == null || oferta == null) {return;}
-		Solicitud solicitud = new Solicitud(persona, oferta, LocalDate.now());
+		String nuevoId = generarIdSolicitudes();
+		Solicitud solicitud = new Solicitud(nuevoId,persona, oferta, LocalDate.now());
 		lasSolicitudes.add(solicitud);
 	}
 	
