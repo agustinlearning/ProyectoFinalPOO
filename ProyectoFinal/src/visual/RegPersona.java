@@ -278,11 +278,13 @@ public class RegPersona extends JDialog {
 					}
 					if(rbtnTecnico.isSelected())
 					{
-						//Tecnico tecnico = new Tecnico();
+						Tecnico Tecnico = new Tecnico(Bolsa.getBolsa().generarIdPersonas(),txtCedula.getText(),txtNombre.getText(),myUser,new Float(spnAspiracionSalarial.getValue().toString()),chxLicencia.isSelected(),chxDispMudanza.isSelected(),txtProvincia.getText(),txtSexo.getText(),txtAreaTecnica.getText(),new Integer(spnAnosExperiencia.getValue().toString()));
+						Bolsa.getBolsa().registraPersona(Tecnico);
+						myUser.setPerfilP(Tecnico);
 					}
 					if(rbtnUniversitario.isSelected())
 					{
-						//Universitario universitario = new Universitario();
+
 					}
 				}
 		});
