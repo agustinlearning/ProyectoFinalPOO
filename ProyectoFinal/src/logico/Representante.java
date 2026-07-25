@@ -1,7 +1,13 @@
 package logico;
 
-public class Representante {
+import java.io.Serializable;
 
+public class Representante implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private static int counterId=1;
 	private String cedula;
