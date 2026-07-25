@@ -7,10 +7,55 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import javax.swing.JRadioButton;
+import javax.swing.JMenu;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JMenuBar;
+import javax.swing.JSeparator;
+import javax.swing.ButtonGroup;
+import javax.swing.JMenuItem;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JCheckBox;
+import javax.swing.JLayeredPane;
+import javax.swing.JTextArea;
 
 public class RegPersona extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
+	private JTextField txtNombre;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private final JPanel panel_2 = new JPanel();
+	
+	private JRadioButton rbtnObrero;
+	private JRadioButton rbtnTecnico;
+	private JRadioButton rbtnUniversitario;
+	private JSpinner spnAspiracionSalarial;
+	private JTextField txtCedula;
+	private JTextField txtSexo;
+	private JTextField textField;
+	private JCheckBox chxLicencia;
+	private JPanel panel;
+	private JLayeredPane panelVariable;
+	private JTextArea txtHabilidades;
+	private JLabel lblHabilidades;
+	private JLabel lblAreaTecnica;
+	private JTextField txtAreaTecnica;
+	private JSpinner spnAnosExperiencia;
+	private JLabel lblTitulo;
+	private JTextField txtTitulo;
+	private JLabel lblAosDeExperiencia;
 
 	/**
 	 * Launch the application.
@@ -29,27 +74,223 @@ public class RegPersona extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegPersona() {
-		setBounds(100, 100, 450, 300);
+		setTitle("Registrar persona");
+		setBounds(100, 100, 761, 407);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			panel = new JPanel();
+			contentPanel.add(panel, BorderLayout.CENTER);
+			panel.setLayout(null);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				JLabel lblNewLabel_1 = new JLabel("Nombre: ");
+				lblNewLabel_1.setBounds(328, 30, 78, 20);
+				panel.add(lblNewLabel_1);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				txtNombre = new JTextField();
+				txtNombre.setBounds(421, 30, 235, 20);
+				panel.add(txtNombre);
+				txtNombre.setColumns(10);
 			}
+			
+			spnAspiracionSalarial = new JSpinner();
+			spnAspiracionSalarial.setModel(new SpinnerNumberModel(new Float(1), new Float(1), null, new Float(1)));
+			spnAspiracionSalarial.setBounds(175, 102, 105, 20);
+			panel.add(spnAspiracionSalarial);
+			
+			JLabel lblAoDeFabricacin = new JLabel("Aspiracion salarial:");
+			lblAoDeFabricacin.setBounds(10, 102, 165, 20);
+			panel.add(lblAoDeFabricacin);
+			
+			JPanel panel_1 = new JPanel();
+			panel_1.setBounds(0, 139, 729, 41);
+			panel.add(panel_1);
+			
+			rbtnObrero = new JRadioButton("Obrero");
+			rbtnObrero.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					lblHabilidades.setVisible(true);
+					txtHabilidades.setVisible(true);
+					lblAreaTecnica.setVisible(false);
+					txtAreaTecnica.setVisible(false);
+					lblAosDeExperiencia.setVisible(false);
+					spnAnosExperiencia.setVisible(false);
+					lblTitulo.setVisible(false);
+					txtTitulo.setVisible(false);
+					
+				}
+			});
+			rbtnObrero.setSelected(true);
+			buttonGroup.add(rbtnObrero);
+			panel_1.add(rbtnObrero);
+			
+			rbtnTecnico = new JRadioButton("Tecnico");
+			rbtnTecnico.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					lblHabilidades.setVisible(false);
+					txtHabilidades.setVisible(false);
+					lblAreaTecnica.setVisible(true);
+					txtAreaTecnica.setVisible(true);
+					lblAosDeExperiencia.setVisible(true);
+					spnAnosExperiencia.setVisible(true);
+					lblTitulo.setVisible(false);
+					txtTitulo.setVisible(false);
+				}
+			});
+			buttonGroup.add(rbtnTecnico);
+			panel_1.add(rbtnTecnico);
+			
+			rbtnUniversitario = new JRadioButton("Universitario");
+			rbtnUniversitario.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					lblHabilidades.setVisible(false);
+					txtHabilidades.setVisible(false);
+					lblAreaTecnica.setVisible(false);
+					txtAreaTecnica.setVisible(false);
+					lblAosDeExperiencia.setVisible(false);
+					spnAnosExperiencia.setVisible(false);
+					lblTitulo.setVisible(true);
+					txtTitulo.setVisible(true);
+				}
+			});
+			buttonGroup.add(rbtnUniversitario);
+			panel_1.add(rbtnUniversitario);
+			
+			JLabel lblCedula = new JLabel("Cedula:");
+			lblCedula.setBounds(10, 30, 78, 20);
+			panel.add(lblCedula);
+			
+			txtCedula = new JTextField();
+			txtCedula.setColumns(10);
+			txtCedula.setBounds(103, 30, 177, 20);
+			panel.add(txtCedula);
+			
+			JLabel lblSexo = new JLabel("Sexo:");
+			lblSexo.setBounds(10, 66, 78, 20);
+			panel.add(lblSexo);
+			
+			txtSexo = new JTextField();
+			txtSexo.setColumns(10);
+			txtSexo.setBounds(103, 66, 177, 20);
+			panel.add(txtSexo);
+			
+			JLabel lblProvincia = new JLabel("Provincia");
+			lblProvincia.setBounds(328, 66, 78, 20);
+			panel.add(lblProvincia);
+			
+			textField = new JTextField();
+			textField.setColumns(10);
+			textField.setBounds(421, 66, 235, 20);
+			panel.add(textField);
+			
+			JCheckBox chxDispMudanza = new JCheckBox("Disp. mudanza");
+			chxDispMudanza.setBounds(326, 98, 139, 29);
+			panel.add(chxDispMudanza);
+			
+			chxLicencia = new JCheckBox("Licencia de conducir");
+			chxLicencia.setBounds(477, 98, 179, 29);
+			panel.add(chxLicencia);
+			
+			panelVariable = new JLayeredPane();
+			panelVariable.setBounds(0, 181, 729, 121);
+			panel.add(panelVariable);
+			
+			lblHabilidades = new JLabel("Habilidades");
+			lblHabilidades.setBounds(35, 25, 105, 20);
+			lblHabilidades.setVisible(true);
+			panelVariable.add(lblHabilidades);
+			
+			txtHabilidades = new JTextArea();
+			txtHabilidades.setBounds(140, 25, 341, 59);
+			txtHabilidades.setVisible(true);
+			panelVariable.add(txtHabilidades);
+			
+			lblAreaTecnica = new JLabel("Area tecnica");
+			panelVariable.setLayer(lblAreaTecnica, 1);
+			lblAreaTecnica.setBounds(35, 25, 105, 20);
+			lblAreaTecnica.setVisible(false);
+			panelVariable.add(lblAreaTecnica);
+			
+			txtAreaTecnica = new JTextField();
+			panelVariable.setLayer(txtAreaTecnica, 1);
+			txtAreaTecnica.setBounds(140, 22, 179, 26);
+			panelVariable.add(txtAreaTecnica);
+			txtAreaTecnica.setVisible(false);
+			txtAreaTecnica.setColumns(10);
+			
+			lblAosDeExperiencia = new JLabel("A\u00F1os de experiencia");
+			panelVariable.setLayer(lblAosDeExperiencia, 1);
+			lblAosDeExperiencia.setBounds(358, 25, 159, 20);
+			panelVariable.add(lblAosDeExperiencia);
+			lblAosDeExperiencia.setVisible(false);
+			
+			spnAnosExperiencia = new JSpinner();
+			spnAnosExperiencia.setBounds(532, 22, 105, 26);
+			panelVariable.add(spnAnosExperiencia);
+			spnAnosExperiencia.setVisible(false);
+			
+			lblTitulo = new JLabel("Titulo: ");
+			panelVariable.setLayer(lblTitulo, 2);
+			lblTitulo.setBounds(35, 25, 69, 20);
+			panelVariable.add(lblTitulo);
+			lblTitulo.setVisible(false);
+			
+			txtTitulo = new JTextField();
+			panelVariable.setLayer(txtTitulo, 2);
+			txtTitulo.setBounds(140, 22, 179, 26);
+			panelVariable.add(txtTitulo);
+			txtTitulo.setColumns(10);
+			txtTitulo.setVisible(false);
+			
+			
+			
+			
 		}
+		FlowLayout flowLayout = (FlowLayout) panel_2.getLayout();
+		flowLayout.setAlignment(FlowLayout.RIGHT);
+		contentPanel.add(panel_2, BorderLayout.SOUTH);
+		
+		JButton btnRegistrar = new JButton("Registrar");
+		btnRegistrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+					if(rbtnObrero.isSelected())
+					{
+						//Esferico esferico = new Esferico(txtNombre.getText(),new Integer(spnCantidad.getValue().toString()),new Float(spnCostoBase.getValue().toString()),new Float(spnCostoUnitario.getValue().toString()),new Float(spnRadio.getValue().toString()));
+						//ComplejoLacteo.getInstancia().registrarQueso(esferico);
+					}
+					if(rbtnTecnico.isSelected())
+					{
+						//Cilindrico cilindrico= new Cilindrico(txtNombre.getText(),new Integer(spnCantidad.getValue().toString()),new Float(spnCostoBase.getValue().toString()),new Float(spnCostoUnitario.getValue().toString()),new Float(spnRadio.getValue().toString()),new Float(spnLongitud.getValue().toString()));
+						//ComplejoLacteo.getInstancia().registrarQueso(cilindrico);
+					}
+					if(rbtnUniversitario.isSelected())
+					{
+						//Hueco hueco= new Hueco(txtNombre.getText(),new Integer(spnCantidad.getValue().toString()),new Float(spnCostoBase.getValue().toString()),new Float(spnCostoUnitario.getValue().toString()),new Float(spnRadio.getValue().toString()),new Float(spnRadioInterior.getValue().toString()),new Float(spnLongitud.getValue().toString()));
+						//ComplejoLacteo.getInstancia().registrarQueso(hueco);
+					}
+				}
+		});
+		btnRegistrar.setActionCommand("OK");
+		panel_2.add(btnRegistrar);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnCancelar.setActionCommand("Cancel");
+		panel_2.add(btnCancelar);
+		
 	}
 
+	private void clear() {
+		//txtId.setText("Q-"+Queso.contadorIdQuesos);
+		txtNombre.setText("");
+	}
 }
