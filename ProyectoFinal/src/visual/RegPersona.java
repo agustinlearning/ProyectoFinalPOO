@@ -278,13 +278,15 @@ public class RegPersona extends JDialog {
 					}
 					if(rbtnTecnico.isSelected())
 					{
-						Tecnico Tecnico = new Tecnico(Bolsa.getBolsa().generarIdPersonas(),txtCedula.getText(),txtNombre.getText(),myUser,new Float(spnAspiracionSalarial.getValue().toString()),chxLicencia.isSelected(),chxDispMudanza.isSelected(),txtProvincia.getText(),txtSexo.getText(),txtAreaTecnica.getText(),new Integer(spnAnosExperiencia.getValue().toString()));
-						Bolsa.getBolsa().registraPersona(Tecnico);
-						myUser.setPerfilP(Tecnico);
+						Tecnico tecnico = new Tecnico(Bolsa.getBolsa().generarIdPersonas(),txtCedula.getText(),txtNombre.getText(),myUser,new Float(spnAspiracionSalarial.getValue().toString()),chxLicencia.isSelected(),chxDispMudanza.isSelected(),txtProvincia.getText(),txtSexo.getText(),txtAreaTecnica.getText(),new Integer(spnAnosExperiencia.getValue().toString()));
+						Bolsa.getBolsa().registraPersona(tecnico);
+						myUser.setPerfilP(tecnico);
 					}
 					if(rbtnUniversitario.isSelected())
 					{
-
+						Universitario universitario = new Universitario(Bolsa.getBolsa().generarIdPersonas(),txtCedula.getText(),txtNombre.getText(),myUser,new Float(spnAspiracionSalarial.getValue().toString()),chxLicencia.isSelected(),chxDispMudanza.isSelected(),txtProvincia.getText(),txtSexo.getText(),txtTitulo.getText());
+						Bolsa.getBolsa().registraPersona(universitario);
+						myUser.setPerfilP(universitario);
 					}
 				}
 		});
