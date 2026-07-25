@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class Obrero extends Persona {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<String> habilidades;
 	public Obrero(String cedula, String nombre, Usuario usuario, float aspSalarial, boolean licencia, boolean dispMudar,
 			String provincia, String sexo, ArrayList<String> habilidades) {

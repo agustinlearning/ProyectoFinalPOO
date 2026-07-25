@@ -1,6 +1,10 @@
 package logico;
 
 public class Universitario extends Persona {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String titulo;
 	public Universitario(String cedula, String nombre, Usuario usuario, float aspSalarial, boolean licencia, boolean dispMudar,
 			String provincia, String sexo, String titulo) {

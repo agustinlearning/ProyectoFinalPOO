@@ -2,6 +2,10 @@ package logico;
 
 public class Tecnico extends Persona {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String areaTecnica;
 	private int anosExp;
 	public Tecnico(String cedula, String nombre, Usuario usuario, float aspSalarial, boolean licencia, boolean dispMudar,
