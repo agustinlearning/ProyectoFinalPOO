@@ -1,5 +1,8 @@
 package logico;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -34,6 +37,16 @@ public class Bolsa implements Serializable{
 		}
 		return bolsa;
 	}
+	// guardamos a la bolsa con sus datos
+	public static void guardarSistema() {
+		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("bolsa_datos.dat"))) {
+            oos.writeObject(getBolsa());
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
 	
 	public ArrayList<Persona> conectarCandidatos(Oferta oferta){
 		return null;
