@@ -10,7 +10,6 @@ public class Solicitud implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private String id;
-	private static int counterId=1;
 	private Persona candidato;
 	private Oferta oferta;
 	private LocalDate fecha;
@@ -18,9 +17,9 @@ public class Solicitud implements Serializable{
 	private String estado;
 	
 	
-	public Solicitud(Persona candidato, Oferta oferta, LocalDate fecha) {
+	public Solicitud(String id,Persona candidato, Oferta oferta, LocalDate fecha) {
 		super();
-		this.id = ""+counterId++;
+		this.id = id;
 		this.candidato = candidato;
 		this.oferta = oferta;
 		this.fecha = fecha;
