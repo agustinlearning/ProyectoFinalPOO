@@ -48,37 +48,37 @@ public class Bolsa implements Serializable{
 	}
 	
 	public String generarIdEmpresa() {
-        String nuevoId = "" + counterEmpresas;
+        String nuevoId = "E-" + counterEmpresas;
         counterEmpresas++;
         return nuevoId;
     }
 	
 	public String generarIdPersonas() {
-        String nuevoId = "" + counterPersonas;
+        String nuevoId = "P-" + counterPersonas;
         counterPersonas++;
         return nuevoId;
     }
 	
 	public String generarIdSolicitudes() {
-        String nuevoId = "" + counterSolicitudes;
+        String nuevoId = "S-" + counterSolicitudes;
         counterSolicitudes++;
         return nuevoId;
     }
 	
 	public String generarIdOfertas() {
-        String nuevoId = "" + counterOfertas;
+        String nuevoId = "O-" + counterOfertas;
         counterOfertas++;
         return nuevoId;
     }
 	
 	public String generarIdRepresentantes() {
-        String nuevoId = "" + counterRepresentantes;
+        String nuevoId = "R-" + counterRepresentantes;
         counterRepresentantes++;
         return nuevoId;
     }
 	
 	public String generarIdUsuarios() {
-        String nuevoId = "" + counterUsuarios;
+        String nuevoId = "U-" + counterUsuarios;
         counterUsuarios++;
         return nuevoId;
     }
