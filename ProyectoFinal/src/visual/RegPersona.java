@@ -270,7 +270,10 @@ public class RegPersona extends JDialog {
 					if(rbtnObrero.isSelected())
 					{
 						ArrayList<String> lista = new ArrayList<>();
-						lista.add(txtHabilidades.getText());
+						String[] habilidades = txtHabilidades.getText().split("\n");
+						for (String string : habilidades) {
+							lista.add(string);
+						}
 						Obrero obrero = new Obrero(Bolsa.getBolsa().generarIdPersonas(),txtCedula.getText(),txtNombre.getText(),myUser,new Float(spnAspiracionSalarial.getValue().toString()),chxLicencia.isSelected(),chxDispMudanza.isSelected(),txtProvincia.getText(),txtSexo.getText(),
 								lista);
 						Bolsa.getBolsa().registraPersona(obrero);
