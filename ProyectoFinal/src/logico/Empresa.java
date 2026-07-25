@@ -9,16 +9,15 @@ public class Empresa implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String id;
-	private static int counterId=1;
 	private String rnc;
 	private Representante representante;
 	private String razonSocial;
 	private float kpi;
 	private String ubicacion;
 	
-	public Empresa(String rnc, Representante representante, String razonSocial, String ubicacion) {
+	public Empresa(String id, String rnc, Representante representante, String razonSocial, String ubicacion) {
 		super();
-		this.id = ""+counterId++;
+		this.id = id;
 		this.rnc = rnc;
 		this.representante = representante;
 		this.razonSocial = razonSocial;
