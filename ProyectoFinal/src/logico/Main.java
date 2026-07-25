@@ -7,9 +7,9 @@ public class Main {
 		// la linea de abajo es para que no de warning
 		//System.out.println(bolsa.lasEmpresas.get(0));
 		
-		Usuario user = new Usuario("Juancitobonilla58@gmail.com","8299724988","persona");
+		//Usuario user = new Usuario("Juancitobonilla58@gmail.com","8299724988","persona");
 		
-		System.out.println(user.getUsername());
+		//System.out.println(user.getUsername());
 		
 
 	}
