@@ -24,7 +24,7 @@ public class Solicitud implements Serializable{
 		this.oferta = oferta;
 		this.fecha = fecha;
 		this.porCoincidencia = 0; // dejar para el algoritmo de macheo mas adelante
-		this.estado = "disponible";
+		this.estado = "activa";
 	}
 
 	public Persona getCandidato() {
