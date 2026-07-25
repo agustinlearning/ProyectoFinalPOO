@@ -35,8 +35,11 @@ public class Tecnico extends Persona {
 	@Override
 	public int evaluarReqEspec(Oferta oferta) {
 		int puntosExtra=0;
+		if(this.getAreaTecnica().equalsIgnoreCase(oferta.getAreaTecnica())) {
+			puntosExtra += 25;
+		}
 		if(this.anosExp >= oferta.getAnosExpRequeridos()) {
-			puntosExtra += 5; // 5 porque si
+			puntosExtra += 25;
 		}
 		return puntosExtra;
 	}

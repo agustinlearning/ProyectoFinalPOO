@@ -25,7 +25,7 @@ public class Universitario extends Persona {
 	public int evaluarReqEspec(Oferta oferta) {
 		int total=0;
 		if(oferta.getTitulo().equalsIgnoreCase(this.titulo)) {
-			total += 5;
+			total += 50;
 		}
 		
 		return total;
