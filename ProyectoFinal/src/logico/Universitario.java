@@ -6,9 +6,9 @@ public class Universitario extends Persona {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String titulo;
-	public Universitario(String cedula, String nombre, Usuario usuario, float aspSalarial, boolean licencia, boolean dispMudar,
+	public Universitario(String id,String cedula, String nombre, Usuario usuario, float aspSalarial, boolean licencia, boolean dispMudar,
 			String provincia, String sexo, String titulo) {
-		super(cedula, nombre, usuario, aspSalarial, licencia, dispMudar, provincia, sexo);
+		super(id,cedula, nombre, usuario, aspSalarial, licencia, dispMudar, provincia, sexo);
 		// TODO Auto-generated constructor stub
 		this.setTitulo(titulo);
 	}

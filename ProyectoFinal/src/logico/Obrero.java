@@ -9,9 +9,9 @@ public class Obrero extends Persona {
 	 */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<String> habilidades;
-	public Obrero(String cedula, String nombre, Usuario usuario, float aspSalarial, boolean licencia, boolean dispMudar,
+	public Obrero(String id, String cedula, String nombre, Usuario usuario, float aspSalarial, boolean licencia, boolean dispMudar,
 			String provincia, String sexo, ArrayList<String> habilidades) {
-		super(cedula, nombre, usuario, aspSalarial, licencia, dispMudar, provincia, sexo);
+		super(id,cedula, nombre, usuario, aspSalarial, licencia, dispMudar, provincia, sexo);
 		// TODO Auto-generated constructor stub
 		this.setHabilidades(habilidades);
 	}

@@ -8,7 +8,6 @@ public abstract class Persona implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	protected String id;
-	protected static int counterId;
 	protected String cedula;
 	protected String nombre;
 	protected Usuario usuario;
@@ -18,10 +17,10 @@ public abstract class Persona implements Serializable{
 	protected String provincia;
 	protected String sexo;
 	
-	public Persona(String cedula, String nombre, Usuario usuario, float aspSalarial, boolean licencia, boolean dispMudar,
+	public Persona(String id, String cedula, String nombre, Usuario usuario, float aspSalarial, boolean licencia, boolean dispMudar,
 			String provincia, String sexo) {
 		super();
-		this.id = ""+counterId++;
+		this.id = id;
 		this.cedula = cedula;
 		this.nombre = nombre;
 		this.usuario = usuario;
