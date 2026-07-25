@@ -1,9 +1,14 @@
 package logico;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Solicitud {
+public class Solicitud implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private static int counterId=1;
 	private Persona candidato;
