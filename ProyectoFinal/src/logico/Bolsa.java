@@ -21,6 +21,7 @@ public class Bolsa implements Serializable{
 	private int counterEmpresas=1;
 	private int counterPersonas=1;
 	private int counterSolicitudes=1;
+	private int counterOfertas=1;
 
 	public ArrayList<Empresa> lasEmpresas;
 	public ArrayList<Persona> lasPersonas;
@@ -59,6 +60,12 @@ public class Bolsa implements Serializable{
 	public String generarIdSolicitudes() {
         String nuevoId = "" + counterSolicitudes;
         counterSolicitudes++;
+        return nuevoId;
+    }
+	
+	public String generarIdOfertas() {
+        String nuevoId = "" + counterOfertas;
+        counterOfertas++;
         return nuevoId;
     }
 	
@@ -112,7 +119,8 @@ public class Bolsa implements Serializable{
 	public void crearOferta(Empresa empresa, String titulo, String descripcion, int salarioMin, int salarioMax, String provincia,
 			boolean needLicencia, boolean disMudarse, String tipoCandidato, float minCoincidencia, int cantPuestos, int anosExpRequeridos, ArrayList<String> lasHabilidades) {
 		if(empresa == null) {return;}
-		Oferta oferta = new Oferta(empresa, titulo, descripcion,salarioMin, salarioMax, provincia, needLicencia, disMudarse, tipoCandidato, minCoincidencia, cantPuestos, anosExpRequeridos, lasHabilidades);
+		String nuevoId = generarIdOfertas();
+		Oferta oferta = new Oferta(nuevoId,empresa, titulo, descripcion,salarioMin, salarioMax, provincia, needLicencia, disMudarse, tipoCandidato, minCoincidencia, cantPuestos, anosExpRequeridos, lasHabilidades);
 		lasOfertas.add(oferta);	
 	}
 	

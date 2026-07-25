@@ -9,7 +9,6 @@ public class Oferta implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private String id;
-	private static int counterId=1;
 	private Empresa empresa;
 	private String titulo;
 	private String descripcion;
@@ -26,10 +25,10 @@ public class Oferta implements Serializable{
 	private ArrayList<String> lasHabilidades;
 	private String estado;
 	
-	public Oferta(Empresa empresa, String titulo, String descripcion, int salarioMin, int salarioMax, String provincia,
+	public Oferta(String id,Empresa empresa, String titulo, String descripcion, int salarioMin, int salarioMax, String provincia,
 			boolean needLicencia, boolean disMudarse, String tipoCandidato, float minCoincidencia, int cantPuestos,int anosExpRequeridos, ArrayList<String> lasHabilidades) {
 		super();
-		this.id = ""+counterId++;
+		this.id = id;
 		this.empresa = empresa;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
