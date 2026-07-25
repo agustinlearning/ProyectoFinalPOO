@@ -25,11 +25,12 @@ import logico.Usuario;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.FlowLayout;
+import javax.swing.JPasswordField;
 
 public class Singup extends JFrame {
 
 	private JPanel contentPane;
-	private JFormattedTextField txtPassword;
+	private JPasswordField txtPassword;
 	private JFormattedTextField txtEmail;
 
 	/**
@@ -76,7 +77,7 @@ public class Singup extends JFrame {
 		lblContrasea.setBounds(77, 114, 169, 38);
 		panel.add(lblContrasea);
 		
-		txtPassword = new JFormattedTextField();
+		txtPassword = new JPasswordField();
 		txtPassword.setBounds(272, 120, 257, 26);
 		panel.add(txtPassword);
 		

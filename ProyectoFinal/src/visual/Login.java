@@ -26,12 +26,13 @@ import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
+import javax.swing.JPasswordField;
 
 public class Login extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUsername;
-	private JFormattedTextField txtPassword;
+	private JPasswordField txtPassword;
 	private JPanel panel_1;
 	private JButton btnLogin;
 	private JButton btnCancel;
@@ -86,7 +87,7 @@ public class Login extends JFrame {
 		panel.add(txtUsername);
 		txtUsername.setColumns(10);
 		
-		txtPassword = new JFormattedTextField();
+		txtPassword = new JPasswordField();
 		txtPassword.setBounds(263, 163, 257, 26);
 		panel.add(txtPassword);
 		
