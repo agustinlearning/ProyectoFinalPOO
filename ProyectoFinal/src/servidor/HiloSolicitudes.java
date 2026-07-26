@@ -10,7 +10,7 @@ import logico.Persona;
 
 
 
-public class HiloProcesadorSolicitudes implements Runnable{
+public class HiloSolicitudes implements Runnable{
 
 	@Override
 	public void run() {

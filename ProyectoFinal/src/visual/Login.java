@@ -12,6 +12,7 @@ import logico.Bolsa;
 import logico.Sesion;
 import logico.Usuario;
 import servidor.HiloOfertas;
+import servidor.HiloSolicitudes;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -45,12 +46,17 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frame = new Login();
-					frame.setVisible(true);
 					Bolsa.cargarSistema();
 					Thread hiloDeOfertas = new Thread(new HiloOfertas());
 					hiloDeOfertas.setDaemon(true);
 					hiloDeOfertas.start();
+					
+					Thread hiloDeSolicitudes = new Thread(new HiloSolicitudes());
+					hiloDeSolicitudes.setDaemon(true);
+					hiloDeSolicitudes.start();
+					
+					Login frame = new Login();
+					frame.setVisible(true);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
