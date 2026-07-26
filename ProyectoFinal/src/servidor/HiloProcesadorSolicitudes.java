@@ -52,7 +52,7 @@ public class HiloProcesadorSolicitudes implements Runnable{
 					
 					
 				}
-				Thread.sleep(600000);
+				Thread.sleep(30000);
 			} catch(InterruptedException e){
 				break;
 			} catch(Exception e) {
