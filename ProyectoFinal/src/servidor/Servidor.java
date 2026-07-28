@@ -6,7 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.io.InputStream;
 
-public class ServidorRespaldo {
+public class Servidor {
 	public static void main(String[] args) {
 		
 		try (ServerSocket serverSocket = new ServerSocket(7000)) {
