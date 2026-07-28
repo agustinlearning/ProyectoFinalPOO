@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -95,6 +96,34 @@ public class Principal extends JFrame {
 		menuBar.add(mnPerfil);
 		
 		JMenuItem mntmMostrarPerfil = new JMenuItem("Ver perfil");
+		mntmMostrarPerfil.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(sesion.getUser().getPerfilE()== null && sesion.getUser().getPerfilP()== null)
+				{
+					JOptionPane.showMessageDialog(null, "No tiene un perfil, vamos a crear uno");
+					if(sesion.getUser().getRol().equalsIgnoreCase("Persona"))
+					{
+						RegPersona regPersona = new RegPersona(sesion.getUser());
+						regPersona.setVisible(true);
+						regPersona.setModal(true);
+					}
+					if(sesion.getUser().getRol().equalsIgnoreCase("Empresa"))
+					{
+						RegEmpresa regEmpresa = new RegEmpresa();
+						regEmpresa.setVisible(true);
+						regEmpresa.setModal(true);
+					}
+				}
+				if(sesion.getUser().getPerfilE() == null && sesion.getUser().getPerfilP()!= null)
+				{
+					
+				}
+				if(sesion.getUser().getPerfilE() != null && sesion.getUser().getPerfilP()== null)
+				{
+					
+				}
+			}
+		});
 		mnPerfil.add(mntmMostrarPerfil);
 		
 		contentPane = new JPanel();

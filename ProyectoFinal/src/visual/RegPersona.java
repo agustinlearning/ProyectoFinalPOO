@@ -9,6 +9,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import logico.Bolsa;
+import logico.Obrero;
+import logico.Tecnico;
+import logico.Universitario;
+import logico.Usuario;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -38,13 +44,14 @@ public class RegPersona extends JDialog {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private final JPanel panel_2 = new JPanel();
 	
+	private Usuario myUser = null;
 	private JRadioButton rbtnObrero;
 	private JRadioButton rbtnTecnico;
 	private JRadioButton rbtnUniversitario;
 	private JSpinner spnAspiracionSalarial;
 	private JTextField txtCedula;
 	private JTextField txtSexo;
-	private JTextField textField;
+	private JTextField txtProvincia;
 	private JCheckBox chxLicencia;
 	private JPanel panel;
 	private JLayeredPane panelVariable;
@@ -56,13 +63,14 @@ public class RegPersona extends JDialog {
 	private JLabel lblTitulo;
 	private JTextField txtTitulo;
 	private JLabel lblAosDeExperiencia;
+	private JCheckBox chxDispMudanza;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			RegPersona dialog = new RegPersona();
+			RegPersona dialog = new RegPersona(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -73,8 +81,9 @@ public class RegPersona extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public RegPersona() {
-		setTitle("Registrar persona");
+	public RegPersona(Usuario user) {
+		myUser = user;
+		setTitle("Crear Perfil");
 		setBounds(100, 100, 761, 407);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -182,12 +191,12 @@ public class RegPersona extends JDialog {
 			lblProvincia.setBounds(328, 66, 78, 20);
 			panel.add(lblProvincia);
 			
-			textField = new JTextField();
-			textField.setColumns(10);
-			textField.setBounds(421, 66, 235, 20);
-			panel.add(textField);
+			txtProvincia = new JTextField();
+			txtProvincia.setColumns(10);
+			txtProvincia.setBounds(421, 66, 235, 20);
+			panel.add(txtProvincia);
 			
-			JCheckBox chxDispMudanza = new JCheckBox("Disp. mudanza");
+			chxDispMudanza = new JCheckBox("Disp. mudanza");
 			chxDispMudanza.setBounds(326, 98, 139, 29);
 			panel.add(chxDispMudanza);
 			
@@ -257,21 +266,36 @@ public class RegPersona extends JDialog {
 		JButton btnRegistrar = new JButton("Registrar");
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+					Bolsa.getBolsa();
 					if(rbtnObrero.isSelected())
 					{
-						//Esferico esferico = new Esferico(txtNombre.getText(),new Integer(spnCantidad.getValue().toString()),new Float(spnCostoBase.getValue().toString()),new Float(spnCostoUnitario.getValue().toString()),new Float(spnRadio.getValue().toString()));
-						//ComplejoLacteo.getInstancia().registrarQueso(esferico);
+						ArrayList<String> lista = new ArrayList<>();
+						String[] habilidades = txtHabilidades.getText().split("\n");
+						for (String string : habilidades) {
+							lista.add(string);
+						}
+						Obrero obrero = new Obrero(Bolsa.getBolsa().generarIdPersonas(),txtCedula.getText(),txtNombre.getText(),myUser,new Float(spnAspiracionSalarial.getValue().toString()),chxLicencia.isSelected(),chxDispMudanza.isSelected(),txtProvincia.getText(),txtSexo.getText(),
+								lista);
+						Bolsa.getBolsa().registraPersona(obrero);
+						myUser.setPerfilP(obrero);
+						JOptionPane.showMessageDialog(null, "Perfil creado correctamente");
+						dispose();
 					}
 					if(rbtnTecnico.isSelected())
 					{
-						//Cilindrico cilindrico= new Cilindrico(txtNombre.getText(),new Integer(spnCantidad.getValue().toString()),new Float(spnCostoBase.getValue().toString()),new Float(spnCostoUnitario.getValue().toString()),new Float(spnRadio.getValue().toString()),new Float(spnLongitud.getValue().toString()));
-						//ComplejoLacteo.getInstancia().registrarQueso(cilindrico);
+						Tecnico tecnico = new Tecnico(Bolsa.getBolsa().generarIdPersonas(),txtCedula.getText(),txtNombre.getText(),myUser,new Float(spnAspiracionSalarial.getValue().toString()),chxLicencia.isSelected(),chxDispMudanza.isSelected(),txtProvincia.getText(),txtSexo.getText(),txtAreaTecnica.getText(),new Integer(spnAnosExperiencia.getValue().toString()));
+						Bolsa.getBolsa().registraPersona(tecnico);
+						myUser.setPerfilP(tecnico);
+						JOptionPane.showMessageDialog(null, "Perfil creado correctamente");
+						dispose();
 					}
 					if(rbtnUniversitario.isSelected())
 					{
-						//Hueco hueco= new Hueco(txtNombre.getText(),new Integer(spnCantidad.getValue().toString()),new Float(spnCostoBase.getValue().toString()),new Float(spnCostoUnitario.getValue().toString()),new Float(spnRadio.getValue().toString()),new Float(spnRadioInterior.getValue().toString()),new Float(spnLongitud.getValue().toString()));
-						//ComplejoLacteo.getInstancia().registrarQueso(hueco);
+						Universitario universitario = new Universitario(Bolsa.getBolsa().generarIdPersonas(),txtCedula.getText(),txtNombre.getText(),myUser,new Float(spnAspiracionSalarial.getValue().toString()),chxLicencia.isSelected(),chxDispMudanza.isSelected(),txtProvincia.getText(),txtSexo.getText(),txtTitulo.getText());
+						Bolsa.getBolsa().registraPersona(universitario);
+						myUser.setPerfilP(universitario);
+						JOptionPane.showMessageDialog(null, "Perfil creado correctamente");
+						dispose();
 					}
 				}
 		});
@@ -287,10 +311,5 @@ public class RegPersona extends JDialog {
 		btnCancelar.setActionCommand("Cancel");
 		panel_2.add(btnCancelar);
 		
-	}
-
-	private void clear() {
-		//txtId.setText("Q-"+Queso.contadorIdQuesos);
-		txtNombre.setText("");
 	}
 }
