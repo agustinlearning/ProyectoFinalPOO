@@ -83,7 +83,7 @@ public class RegPersona extends JDialog {
 	 */
 	public RegPersona(Usuario user) {
 		myUser = user;
-		setTitle("Registrar persona");
+		setTitle("Crear Perfil");
 		setBounds(100, 100, 761, 407);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
