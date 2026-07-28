@@ -278,18 +278,24 @@ public class RegPersona extends JDialog {
 								lista);
 						Bolsa.getBolsa().registraPersona(obrero);
 						myUser.setPerfilP(obrero);
+						JOptionPane.showMessageDialog(null, "Perfil creado correctamente");
+						dispose();
 					}
 					if(rbtnTecnico.isSelected())
 					{
 						Tecnico tecnico = new Tecnico(Bolsa.getBolsa().generarIdPersonas(),txtCedula.getText(),txtNombre.getText(),myUser,new Float(spnAspiracionSalarial.getValue().toString()),chxLicencia.isSelected(),chxDispMudanza.isSelected(),txtProvincia.getText(),txtSexo.getText(),txtAreaTecnica.getText(),new Integer(spnAnosExperiencia.getValue().toString()));
 						Bolsa.getBolsa().registraPersona(tecnico);
 						myUser.setPerfilP(tecnico);
+						JOptionPane.showMessageDialog(null, "Perfil creado correctamente");
+						dispose();
 					}
 					if(rbtnUniversitario.isSelected())
 					{
 						Universitario universitario = new Universitario(Bolsa.getBolsa().generarIdPersonas(),txtCedula.getText(),txtNombre.getText(),myUser,new Float(spnAspiracionSalarial.getValue().toString()),chxLicencia.isSelected(),chxDispMudanza.isSelected(),txtProvincia.getText(),txtSexo.getText(),txtTitulo.getText());
 						Bolsa.getBolsa().registraPersona(universitario);
 						myUser.setPerfilP(universitario);
+						JOptionPane.showMessageDialog(null, "Perfil creado correctamente");
+						dispose();
 					}
 				}
 		});
@@ -305,10 +311,5 @@ public class RegPersona extends JDialog {
 		btnCancelar.setActionCommand("Cancel");
 		panel_2.add(btnCancelar);
 		
-	}
-
-	private void clear() {
-		//txtId.setText("Q-"+Queso.contadorIdQuesos);
-		txtNombre.setText("");
 	}
 }
