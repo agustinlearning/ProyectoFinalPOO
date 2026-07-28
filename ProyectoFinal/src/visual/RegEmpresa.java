@@ -7,7 +7,13 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import logico.Bolsa;
+import logico.Empresa;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JSpinner;
@@ -18,9 +24,9 @@ import java.awt.event.ActionEvent;
 public class RegEmpresa extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField txtRnc;
+	private JTextField txtUbicacion;
+	private JTextField txtRazonSocial;
 
 	/**
 	 * Launch the application.
@@ -65,20 +71,20 @@ public class RegEmpresa extends JDialog {
 			contentPanel.add(lblUbicacion);
 		}
 		
-		textField = new JTextField();
-		textField.setBounds(138, 42, 146, 26);
-		contentPanel.add(textField);
-		textField.setColumns(10);
+		txtRnc = new JTextField();
+		txtRnc.setBounds(138, 42, 146, 26);
+		contentPanel.add(txtRnc);
+		txtRnc.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(138, 112, 146, 26);
-		contentPanel.add(textField_1);
+		txtUbicacion = new JTextField();
+		txtUbicacion.setColumns(10);
+		txtUbicacion.setBounds(138, 112, 146, 26);
+		contentPanel.add(txtUbicacion);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(425, 42, 146, 26);
-		contentPanel.add(textField_2);
+		txtRazonSocial = new JTextField();
+		txtRazonSocial.setColumns(10);
+		txtRazonSocial.setBounds(425, 42, 146, 26);
+		contentPanel.add(txtRazonSocial);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -87,7 +93,16 @@ public class RegEmpresa extends JDialog {
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						if(txtRnc.getText().isEmpty() || txtUbicacion.getText().isEmpty() || txtRazonSocial.getText().isEmpty())
+						{
+							JOptionPane.showMessageDialog(null, "Termine de llenar los campos");
+						}
+						else 
+						{
+							Bolsa.getBolsa().registrarEmpresa(txtRnc.getText(),null,txtRazonSocial.getText(),txtUbicacion.getText());
+							JOptionPane.showMessageDialog(null, "Perfil creado correctamente");
+							dispose();
+						}
 					}
 				});
 				okButton.setActionCommand("OK");
