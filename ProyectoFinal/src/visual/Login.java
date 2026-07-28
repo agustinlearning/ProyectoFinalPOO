@@ -11,8 +11,8 @@ import javax.swing.border.TitledBorder;
 import logico.Bolsa;
 import logico.Sesion;
 import logico.Usuario;
-import servidor.HiloOfertas;
-import servidor.HiloSolicitudes;
+import hilos.HiloOfertas;
+import hilos.HiloSolicitudes;
 
 import javax.swing.JLabel;
 import java.awt.Font;
