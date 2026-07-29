@@ -32,9 +32,7 @@ public class ListarUsuarios extends JDialog {
 	private JTable table;
 	private Object[] row;
 	private Usuario selected = null;
-	private JButton btnModificar;
-	private JButton btnEliminar;
-	private JButton btnCalcularTotal;
+
 
 	/**
 	 * Launch the application.
@@ -57,7 +55,6 @@ public class ListarUsuarios extends JDialog {
 	 * Create the frame.
 	 */
 	public ListarUsuarios() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 630, 319);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
@@ -79,8 +76,6 @@ public class ListarUsuarios extends JDialog {
 				int index = table.getSelectedRow();
 				if(index >= 0)
 				{
-					btnEliminar.setEnabled(true);
-					btnModificar.setEnabled(true);
 					selected = Bolsa.getBolsa().buscarUsuarioPorUsername(table.getValueAt(index, 0).toString());
 				}
 			}
@@ -93,17 +88,13 @@ public class ListarUsuarios extends JDialog {
 		contentPane.add(panel, BorderLayout.SOUTH);
 		panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		
-		btnCalcularTotal.setEnabled(false);
-		btnCalcularTotal.setActionCommand("OK");
-		panel.add(btnCalcularTotal);
-		btnModificar.setActionCommand("OK");
-		panel.add(btnModificar);
-		
-		btnEliminar.setEnabled(false);
-		btnEliminar.setActionCommand("OK");
-		panel.add(btnEliminar);
 		
 		JButton button_1 = new JButton("Cancelar");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		button_1.setActionCommand("Cancel");
 		panel.add(button_1);
 		
