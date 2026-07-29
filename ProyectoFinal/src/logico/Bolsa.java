@@ -175,8 +175,11 @@ public class Bolsa implements Serializable{
 			}
 		}
 		candidatos.sort(Comparator.comparing(CandidatoEvaluado::getPuntajeTotal));
+		int cant=0;
 		for(CandidatoEvaluado cand : candidatos) {
+			if( cant >= 3) {break;}
 			estasPersonas.add(cand.getCandidato());
+			cant++;
 		}
 		return estasPersonas;
 	}
