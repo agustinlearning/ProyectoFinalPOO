@@ -32,6 +32,7 @@ public class Singup extends JFrame {
 	private JPanel contentPane;
 	private JPasswordField txtPassword;
 	private JFormattedTextField txtEmail;
+	private JButton btnCancel;
 
 	/**
 	 * Launch the application.
@@ -136,7 +137,12 @@ public class Singup extends JFrame {
 			}
 		});
 		
-		JButton btnCancel = new JButton("Cancelar");
+		btnCancel = new JButton("Cancelar");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		panel_2.add(btnCancel);
 	}
 }
