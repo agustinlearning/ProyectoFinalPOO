@@ -37,7 +37,8 @@ public class Principal extends JFrame {
 	private JMenuBar menuBar;
 	private static Sesion mySesion = null;
 	private JMenu mnAdministracion;
-	private JMenuItem mntnUsuarios;
+	private JMenuItem mntmListarUsuarios;
+	private JMenuItem mListarEmpresa;
 
 	/**
 	 * Launch the application.
@@ -62,6 +63,7 @@ public class Principal extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
+				JOptionPane.showMessageDialog(null, "No tiene un perfil, vamos a crear uno");
 				Bolsa.guardarSistema();
 			}
 		});
@@ -149,8 +151,18 @@ public class Principal extends JFrame {
 		}
 		
 		
-		mntnUsuarios = new JMenuItem("Usuarios");
-		mnAdministracion.add(mntnUsuarios);
+		mntmListarUsuarios = new JMenuItem("Listar usuarios");
+		mntmListarUsuarios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListarUsuarios listar = new ListarUsuarios();
+				listar.setVisible(true);
+				listar.setModal(true);
+			}
+		});
+		mnAdministracion.add(mntmListarUsuarios);
+		
+		mListarEmpresa = new JMenuItem("Listar Empresas");
+		mnAdministracion.add(mListarEmpresa);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
