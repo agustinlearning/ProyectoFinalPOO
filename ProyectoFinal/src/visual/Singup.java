@@ -136,6 +136,7 @@ public class Singup extends JFrame {
 					String nuevoId = Bolsa.getBolsa().generarIdUsuarios();
 					Usuario user = new Usuario(nuevoId,txtEmail.getText(),txtPassword.getText(),cbxTipo.getSelectedItem().toString());
 					JOptionPane.showMessageDialog(null, "Registro exitoso, su nombre de usuario es: " + user.getUsername());
+					Bolsa.getBolsa().registrarUsuario(user);
 					Bolsa.guardarSistema();
 					dispose();
 					Login login = new Login();
