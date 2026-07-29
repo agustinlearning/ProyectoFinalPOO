@@ -26,6 +26,8 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.FlowLayout;
 import javax.swing.JPasswordField;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Singup extends JFrame {
 
@@ -54,6 +56,12 @@ public class Singup extends JFrame {
 	 * Create the frame.
 	 */
 	public Singup() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				Bolsa.getBolsa().guardarSistema();
+			}
+		});
 		setTitle("Sing up");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 400);
@@ -128,6 +136,7 @@ public class Singup extends JFrame {
 					String nuevoId = Bolsa.getBolsa().generarIdUsuarios();
 					Usuario user = new Usuario(nuevoId,txtEmail.getText(),txtPassword.getText(),cbxTipo.getSelectedItem().toString());
 					JOptionPane.showMessageDialog(null, "Registro exitoso, su nombre de usuario es: " + user.getUsername());
+					Bolsa.guardarSistema();
 					dispose();
 					Login login = new Login();
 					login.setVisible(true);

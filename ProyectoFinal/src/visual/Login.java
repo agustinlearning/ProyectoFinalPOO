@@ -46,7 +46,7 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Bolsa.cargarSistema();
+					Bolsa.getBolsa().cargarSistema();
 					Thread hiloDeOfertas = new Thread(new HiloOfertas());
 					hiloDeOfertas.setDaemon(true);
 					hiloDeOfertas.start();
@@ -69,6 +69,7 @@ public class Login extends JFrame {
 	 * Create the frame.
 	 */
 	public Login() {
+		
 		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 400);
