@@ -13,12 +13,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import logico.Bolsa;
 import logico.Sesion;
 
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
 import java.awt.Component;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Principal extends JFrame {
 
@@ -33,6 +36,8 @@ public class Principal extends JFrame {
 	private JPanel panel;
 	private JMenuBar menuBar;
 	private static Sesion mySesion = null;
+	private JMenu mnAdministracion;
+	private JMenuItem mntnUsuarios;
 
 	/**
 	 * Launch the application.
@@ -54,6 +59,12 @@ public class Principal extends JFrame {
 	 * Create the frame.
 	 */
 	public Principal(Sesion sesion) {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				Bolsa.guardarSistema();
+			}
+		});
 		mySesion = sesion;
 		
 		setLocationRelativeTo(null);
@@ -125,6 +136,21 @@ public class Principal extends JFrame {
 			}
 		});
 		mnPerfil.add(mntmMostrarPerfil);
+		
+		mnAdministracion = new JMenu("Admin");
+		menuBar.add(mnAdministracion);
+		if(sesion.getUser().getRol().equalsIgnoreCase("admin"))
+		{
+			mnAdministracion.setVisible(true);
+		}
+		else
+		{
+			mnAdministracion.setVisible(false);
+		}
+		
+		
+		mntnUsuarios = new JMenuItem("Usuarios");
+		mnAdministracion.add(mntnUsuarios);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
