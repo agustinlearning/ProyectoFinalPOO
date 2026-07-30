@@ -70,7 +70,6 @@ public class Principal extends JFrame {
 		mySesion = sesion;
 		
 		setLocationRelativeTo(null);
-		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 834, 529);
 		setVisible(false);
@@ -162,6 +161,13 @@ public class Principal extends JFrame {
 		mnAdministracion.add(mntmListarUsuarios);
 		
 		mListarEmpresa = new JMenuItem("Listar Empresas");
+		mListarEmpresa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListarEmpresas listarEmpresa = new ListarEmpresas();
+				listarEmpresa.setVisible(true);
+				listarEmpresa.setModal(true);
+			}
+		});
 		mnAdministracion.add(mListarEmpresa);
 		
 		contentPane = new JPanel();
