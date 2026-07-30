@@ -147,9 +147,9 @@ public class Bolsa implements Serializable{
 	
 	// prototipo del algoritmo de macheo
 	
-	public ArrayList<Persona> mejoresCandidatosOferta(Oferta oferta){
-		ArrayList<Persona> estasPersonas = new ArrayList<>();
+	public ArrayList<CandidatoEvaluado> mejoresCandidatosOferta(Oferta oferta){
 		ArrayList<CandidatoEvaluado> candidatos = new ArrayList<>();
+		ArrayList<CandidatoEvaluado> losMejores = new ArrayList<>();
 		int puntosAcumulados=0;
 		for(Persona per : lasPersonas) {
 			
@@ -178,10 +178,10 @@ public class Bolsa implements Serializable{
 		int cant=0;
 		for(CandidatoEvaluado cand : candidatos) {
 			if( cant >= 3) {break;}
-			estasPersonas.add(cand.getCandidato());
+			losMejores.add(cand);
 			cant++;
 		}
-		return estasPersonas;
+		return losMejores;
 	}
 	
 	public Usuario buscarUsuarioPorUsername(String username)
