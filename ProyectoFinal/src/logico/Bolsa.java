@@ -198,6 +198,14 @@ public class Bolsa implements Serializable{
 	public void registrarUsuario(Usuario U1) {
 		losUsuarios.add(U1);
 	}
+
+	public Persona buscarPersonaPorNombre(String string) {
+		for (Persona persona : lasPersonas) {
+			if(persona.getNombre().equalsIgnoreCase(string))
+				return persona;
+		}
+		return null;
+	}
 	
 	
 	
