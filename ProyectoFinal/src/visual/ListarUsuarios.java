@@ -55,7 +55,9 @@ public class ListarUsuarios extends JDialog {
 	 * Create the frame.
 	 */
 	public ListarUsuarios() {
-		setBounds(100, 100, 630, 319);
+		setResizable(false);
+		setModal(true);
+		setBounds(100, 100, 640, 340);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
