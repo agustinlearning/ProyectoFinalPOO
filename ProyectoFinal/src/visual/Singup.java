@@ -59,7 +59,7 @@ public class Singup extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				Bolsa.getBolsa().guardarSistema();
+				Bolsa.guardarSistema();
 			}
 		});
 		setTitle("Sing up");

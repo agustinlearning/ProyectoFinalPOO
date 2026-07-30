@@ -46,7 +46,7 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Bolsa.getBolsa().cargarSistema();
+					Bolsa.cargarSistema();
 					Thread hiloDeOfertas = new Thread(new HiloOfertas());
 					hiloDeOfertas.setDaemon(true);
 					hiloDeOfertas.start();
