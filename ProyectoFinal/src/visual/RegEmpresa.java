@@ -45,6 +45,8 @@ public class RegEmpresa extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegEmpresa() {
+		setResizable(false);
+		setModal(true);
 		setTitle("Crear Perfil");
 		addWindowListener(new WindowAdapter() {
 			@Override

@@ -82,9 +82,11 @@ public class RegPersona extends JDialog {
 	 * Create the dialog.
 	 */
 	public RegPersona(Usuario user) {
+		setResizable(false);
+		setModal(true);
 		myUser = user;
 		setTitle("Crear Perfil");
-		setBounds(100, 100, 761, 407);
+		setBounds(100, 100, 686, 381);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -130,7 +132,6 @@ public class RegPersona extends JDialog {
 					spnAnosExperiencia.setVisible(false);
 					lblTitulo.setVisible(false);
 					txtTitulo.setVisible(false);
-					
 				}
 			});
 			rbtnObrero.setSelected(true);
