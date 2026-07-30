@@ -16,6 +16,7 @@ public abstract class Persona implements Serializable{
 	protected boolean dispMudar;
 	protected String provincia;
 	protected String sexo;
+	protected boolean contratado;
 	
 	public Persona(String id, String cedula, String nombre, Usuario usuario, float aspSalarial, boolean licencia, boolean dispMudar,
 			String provincia, String sexo) {
@@ -29,6 +30,7 @@ public abstract class Persona implements Serializable{
 		this.dispMudar = dispMudar;
 		this.provincia = provincia;
 		this.sexo = sexo;
+		this.contratado = false;
 	}
 	
 	public String getNombre() {
@@ -85,6 +87,14 @@ public abstract class Persona implements Serializable{
 	}
 	
 	public abstract int evaluarReqEspec(Oferta oferta);
+
+	public boolean isContratado() {
+		return contratado;
+	}
+
+	public void setContratado(boolean contratado) {
+		this.contratado = contratado;
+	}
 
 
 	
