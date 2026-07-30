@@ -39,6 +39,8 @@ public class Principal extends JFrame {
 	private JMenu mnAdministracion;
 	private JMenuItem mntmListarUsuarios;
 	private JMenuItem mListarEmpresa;
+	private JMenuItem mntmCrearRespaldo;
+	private JMenuItem mntmDashboad;
 
 	/**
 	 * Launch the application.
@@ -86,6 +88,10 @@ public class Principal extends JFrame {
 		menuBar.add(mnEmpleados);
 		
 		mntmCrearSolicitud = new JMenuItem("Registrar");
+		mntmCrearSolicitud.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		mntmCrearSolicitud.setHorizontalAlignment(SwingConstants.CENTER);
 		mnEmpleados.add(mntmCrearSolicitud);
 		
@@ -169,6 +175,22 @@ public class Principal extends JFrame {
 			}
 		});
 		mnAdministracion.add(mListarEmpresa);
+		
+		mntmCrearRespaldo = new JMenuItem("Crear Respaldo");
+		mntmCrearRespaldo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Bolsa.getBolsa().guardarSistema();
+			}
+		});
+		mnAdministracion.add(mntmCrearRespaldo);
+		
+		mntmDashboad = new JMenuItem("Dashboad");
+		mntmDashboad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		mnAdministracion.add(mntmDashboad);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
