@@ -78,27 +78,30 @@ public class Principal extends JFrame {
 	    menuBar = new JMenuBar();
 	    setJMenuBar(menuBar);
 	    
-	    mnEmpleados = new JMenu("Solicitudes");
+	    mnEmpleados = new JMenu("Mi Candidatura");
 	    if(sesion.getUser().getRol().equalsIgnoreCase("Persona") || sesion.getUser().getRol().equalsIgnoreCase("Admin")) {
 	        mnEmpleados.setEnabled(true);
 	    }
 	    menuBar.add(mnEmpleados);
 	    
-	    mntmCrearSolicitud = new JMenuItem("Registrar Solicitud");
+	    mntmCrearSolicitud = new JMenuItem("Ver mi Estado");
 	    mntmCrearSolicitud.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
-	            JOptionPane.showMessageDialog(null, "Abrir ventana de Registrar Solicitud (En desarrollo)");
+	            logico.Persona miPersona = mySesion.getUser().getPerfilP();
+
+	            if(miPersona != null) {
+	                MiEstado ventanaEstado = new MiEstado(miPersona);
+	                ventanaEstado.setVisible(true);
+	            } else {
+	                javax.swing.JOptionPane.showMessageDialog(null, 
+	                    "Debe tener un perfil de tipo Persona creado para ver su estado.", 
+	                    "Perfil Incompleto", 
+	                    javax.swing.JOptionPane.WARNING_MESSAGE);
+	            }
 	        }
 	    });
 	    mnEmpleados.add(mntmCrearSolicitud);
-	    
-	    mntmNewMenuItem = new JMenuItem("Listar Solicitud");
-	    mntmNewMenuItem.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e) {
-	            JOptionPane.showMessageDialog(null, "Abrir ventana de Listar Solicitudes (En desarrollo)");
-	        }
-	    });
-	    mnEmpleados.add(mntmNewMenuItem);
+
 	    
 	    // MENÚ DE OFERTAS
 	    mnOfertas = new JMenu("Ofertas");
