@@ -77,12 +77,12 @@ public class Singup extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Correo Electronico");
-		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+		lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblNewLabel.setBounds(77, 38, 169, 38);
 		panel.add(lblNewLabel);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a");
-		lblContrasea.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+		lblContrasea.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblContrasea.setBounds(77, 114, 169, 38);
 		panel.add(lblContrasea);
 		
@@ -111,7 +111,7 @@ public class Singup extends JFrame {
 		panel.add(txtEmail);
 		
 		JLabel lblTipo = new JLabel("Tipo");
-		lblTipo.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+		lblTipo.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblTipo.setBounds(77, 190, 169, 38);
 		panel.add(lblTipo);
 		

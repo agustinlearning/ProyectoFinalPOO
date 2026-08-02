@@ -86,12 +86,12 @@ public class Login extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Nombre de usuario");
-		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+		lblNewLabel.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblNewLabel.setBounds(29, 69, 217, 38);
 		panel.add(lblNewLabel);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a");
-		lblContrasea.setFont(new Font("Times New Roman", Font.PLAIN, 25));
+		lblContrasea.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblContrasea.setBounds(29, 154, 169, 38);
 		panel.add(lblContrasea);
 		
