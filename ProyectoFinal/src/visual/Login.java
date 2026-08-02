@@ -46,6 +46,7 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
 					Bolsa.cargarSistema();
 					Thread hiloDeOfertas = new Thread(new HiloOfertas());
 					hiloDeOfertas.setDaemon(true);
