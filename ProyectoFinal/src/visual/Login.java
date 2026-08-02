@@ -48,6 +48,24 @@ public class Login extends JFrame {
 				try {
 					javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
 					Bolsa.cargarSistema();
+					
+					boolean existeAdmin = false;
+
+	                for (Usuario u : Bolsa.getBolsa().losUsuarios) {
+	                    if (u.getRol().equalsIgnoreCase("Admin")) {
+	                        existeAdmin = true;
+	                        break;
+	                    }
+	                }
+	                
+	                if (!existeAdmin) {
+	                    String idAdmin = Bolsa.getBolsa().generarIdUsuarios();
+	                    Usuario adminDefecto = new Usuario(idAdmin, "admin", "admin", "Admin");
+	                    Bolsa.getBolsa().registrarUsuario(adminDefecto);
+	                    Bolsa.guardarSistema(); 
+	                    System.out.println("Sistema inicializado: Creado usuario admin por defecto.");
+	                }
+					
 					Thread hiloDeOfertas = new Thread(new HiloOfertas());
 					hiloDeOfertas.setDaemon(true);
 					hiloDeOfertas.start();
