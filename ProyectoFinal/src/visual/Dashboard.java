@@ -1,57 +1,48 @@
 package visual;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-
-import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.GridLayout;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import logico.Bolsa;
 
 public class Dashboard extends JDialog {
 
-	private final JPanel contentPanel = new JPanel();
+    private final JPanel contentPanel = new JPanel();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			Dashboard dialog = new Dashboard();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    public Dashboard() {
+        setModal(true);
+        setTitle("Resumen del Sistema");
+        setBounds(100, 100, 500, 300);
+        setLocationRelativeTo(null);
+        getContentPane().setLayout(new BorderLayout());
+        contentPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
+        getContentPane().add(contentPanel, BorderLayout.CENTER);
+        contentPanel.setLayout(new GridLayout(2, 2, 15, 15));
 
-	/**
-	 * Create the dialog.
-	 */
-	public Dashboard() {
-		setModal(true);
-		setTitle("DashBoard");
-		setBounds(100, 100, 750, 450);
-		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new FlowLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
-		}
-	}
+        contentPanel.add(crearPanelMetrica("Total de Usuarios", Bolsa.getBolsa().losUsuarios.size()));
+        contentPanel.add(crearPanelMetrica("Total de Empresas", Bolsa.getBolsa().lasEmpresas.size()));
+        contentPanel.add(crearPanelMetrica("Personas Registradas", Bolsa.getBolsa().lasPersonas.size()));
+        
+        //recordar añadir otra estadística: ej (la lista de ofertas o solicitudes) mas tarde
+        contentPanel.add(crearPanelMetrica("Ofertas Activas", 0)); 
+    }
 
+    private JPanel crearPanelMetrica(String titulo, int valor) {
+        JPanel panel = new JPanel();
+        panel.setBorder(new TitledBorder(null, titulo, TitledBorder.LEADING, TitledBorder.TOP, new Font("Segoe UI", Font.BOLD, 12), null));
+        panel.setLayout(new BorderLayout(0, 0));
+        
+        JLabel lblValor = new JLabel(String.valueOf(valor));
+        lblValor.setHorizontalAlignment(SwingConstants.CENTER);
+        lblValor.setFont(new Font("Segoe UI", Font.BOLD, 24));
+        panel.add(lblValor, BorderLayout.CENTER);
+        
+        return panel;
+    }
 }
