@@ -112,10 +112,21 @@ public class MostrarCandidatos extends JDialog {
 		});
 		
 		btnElegir = new JButton("Elegir");
+		btnElegir.setEnabled(false);
 		btnElegir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        if (selected != null) {
+		            // añádir logica para vincular empresa con el candidato
+		            JOptionPane.showMessageDialog(null, 
+		                "Has seleccionado a " + selected.getNombre() + " exitosamente!\n" +
+		                "El candidato será notificado.", 
+		                "Contratación Exitosa", 
+		                JOptionPane.INFORMATION_MESSAGE);
+		            dispose();
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Por favor, seleccione un candidato de la tabla", "Error", JOptionPane.WARNING_MESSAGE);
+		        }
+		    }
 		});
 		btnElegir.setActionCommand("OK");
 		panel.add(btnElegir);
