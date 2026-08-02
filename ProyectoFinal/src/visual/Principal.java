@@ -118,7 +118,18 @@ public class Principal extends JFrame {
 	    mntmListarOfertas = new JMenuItem("Listar Ofertas");
 	    mntmListarOfertas.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
-	            JOptionPane.showMessageDialog(null, "Abrir ventana de Listar Ofertas (En desarrollo)");
+	            logico.Empresa miEmpresa = mySesion.getUser().getPerfilE();
+	            if(miEmpresa != null) {
+	                
+	                // lista temporal vacía para que la ventana abra
+	                // llamar al metodo de match mas adelalnte
+	                java.util.ArrayList<logico.CandidatoEvaluado> listaDeCandidatos = new java.util.ArrayList<>();
+	                MostrarCandidatos ventana = new MostrarCandidatos(listaDeCandidatos, miEmpresa);
+	                ventana.setVisible(true);
+	                
+	            } else {
+	                JOptionPane.showMessageDialog(null, "Solo los perfiles de tipo Empresa pueden ver candidatos.", "Acceso denegado", JOptionPane.WARNING_MESSAGE);
+	            }
 	        }
 	    });
 	    mnOfertas.add(mntmListarOfertas);
