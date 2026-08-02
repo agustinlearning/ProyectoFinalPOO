@@ -43,6 +43,7 @@ public class MostrarCandidatos extends JDialog {
 	private static ArrayList<CandidatoEvaluado> losCandidatos = new ArrayList<>();
 	private JButton btnCancel;
 	private JButton btnElegir;
+	private Empresa empresaLogueada;
 
 
 	/**
@@ -52,9 +53,9 @@ public class MostrarCandidatos extends JDialog {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MostrarCandidatos dialog = new MostrarCandidatos(losCandidatos);
-					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-					dialog.setVisible(true);
+					MostrarCandidatos dialog = new MostrarCandidatos(losCandidatos, null); 
+				    dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+				    dialog.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -65,8 +66,9 @@ public class MostrarCandidatos extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public MostrarCandidatos(ArrayList<CandidatoEvaluado> candidatos) {
+	public MostrarCandidatos(ArrayList<CandidatoEvaluado> candidatos, Empresa empresaActual) {
 		losCandidatos = candidatos;
+	    this.empresaLogueada = empresaActual;
 		setResizable(false);
 		setModal(true);
 		setBounds(100, 100, 640, 340);
@@ -116,13 +118,19 @@ public class MostrarCandidatos extends JDialog {
 		btnElegir.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
 		        if (selected != null) {
-		            // añádir logica para vincular empresa con el candidato
-		            JOptionPane.showMessageDialog(null, 
-		                "Has seleccionado a " + selected.getNombre() + " exitosamente!\n" +
-		                "El candidato será notificado.", 
-		                "Contratación Exitosa", 
-		                JOptionPane.INFORMATION_MESSAGE);
-		            dispose();
+		            if (empresaLogueada != null) {
+		                empresaLogueada.contratarCandidato(selected);
+		                Bolsa.guardarSistema();
+		                
+		                JOptionPane.showMessageDialog(null, 
+		                    "¡Has seleccionado a " + selected.getNombre() + " exitosamente!\n" +
+		                    "El candidato será notificado.", 
+		                    "Contratación Exitosa", 
+		                    JOptionPane.INFORMATION_MESSAGE);
+		                dispose();
+		            } else {
+		                JOptionPane.showMessageDialog(null, "Error: Sesión de empresa no válida.", "Error", JOptionPane.ERROR_MESSAGE);
+		            }
 		        } else {
 		            JOptionPane.showMessageDialog(null, "Por favor, seleccione un candidato de la tabla", "Error", JOptionPane.WARNING_MESSAGE);
 		        }
