@@ -110,7 +110,16 @@ public class Principal extends JFrame {
 	    mntmRegistrarOferta = new JMenuItem("Registrar Oferta");
 	    mntmRegistrarOferta.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
-	            JOptionPane.showMessageDialog(null, "Abrir ventana de Registrar Oferta (En desarrollo)");
+	            logico.Empresa miEmpresa = mySesion.getUser().getPerfilE();
+	            if(miEmpresa != null) {
+	                RegOferta ventanaRegistro = new RegOferta(miEmpresa);
+	                ventanaRegistro.setVisible(true);
+	            } else {
+	                JOptionPane.showMessageDialog(null, 
+	                    "Debe tener un perfil de tipo Empresa activo para crear ofertas.", 
+	                    "Acceso Denegado", 
+	                    JOptionPane.WARNING_MESSAGE);
+	            }
 	        }
 	    });
 	    mnOfertas.add(mntmRegistrarOferta);
