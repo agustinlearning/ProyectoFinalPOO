@@ -5,13 +5,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Cliente {
     
-    // Ahora recibe la IP y el puerto por parámetro
     public static void enviarRespaldoAlServidor(String ip, int puerto) {
         
         File archivoLocal = new File("bolsa_datos.dat"); 
