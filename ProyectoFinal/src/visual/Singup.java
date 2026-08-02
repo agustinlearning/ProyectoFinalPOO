@@ -127,23 +127,33 @@ public class Singup extends JFrame {
 		JButton btnSingup = new JButton("Registrar");
 		panel_2.add(btnSingup);
 		btnSingup.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(txtEmail.getText().equalsIgnoreCase("") || txtPassword.getText().equalsIgnoreCase(""))
-				{
-					JOptionPane.showMessageDialog(null, "Termine de llenar los campos");
-				}
-				else {
-					String nuevoId = Bolsa.getBolsa().generarIdUsuarios();
-					Usuario user = new Usuario(nuevoId,txtEmail.getText(),txtPassword.getText(),cbxTipo.getSelectedItem().toString());
-					JOptionPane.showMessageDialog(null, "Registro exitoso, su nombre de usuario es: " + user.getUsername());
-					Bolsa.getBolsa().registrarUsuario(user);
-					Bolsa.guardarSistema();
-					dispose();
-					Login login = new Login();
-					login.setVisible(true);
-					
-				}
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        String email = txtEmail.getText().trim();
+		        String password = txtPassword.getText();
+
+		        if(email.isEmpty() || password.isEmpty()) {
+		            JOptionPane.showMessageDialog(null, "Termine de llenar los campos", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
+		        }
+		        else if (!email.matches("^[^@\\s]+@[^@\\s]+\\.com$")) {
+		            JOptionPane.showMessageDialog(null, 
+		                "El formato del correo es inválido.\nAsegúrese de que contenga un '@' y termine en '.com'.", 
+		                "Error de Formato", 
+		                JOptionPane.ERROR_MESSAGE);
+		        }
+		        else {
+		            String nuevoId = Bolsa.getBolsa().generarIdUsuarios();
+		            Usuario user = new Usuario(nuevoId, email, password, cbxTipo.getSelectedItem().toString());
+		            
+		            JOptionPane.showMessageDialog(null, "Registro exitoso, su nombre de usuario es: " + user.getUsername());
+		            
+		            Bolsa.getBolsa().registrarUsuario(user);
+		            Bolsa.guardarSistema(); 
+		            
+		            dispose();
+		            Login login = new Login();
+		            login.setVisible(true);
+		        }
+		    }
 		});
 		
 		btnCancel = new JButton("Cancelar");
