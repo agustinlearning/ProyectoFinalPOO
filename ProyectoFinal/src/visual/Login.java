@@ -45,43 +45,92 @@ public class Login extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-					Bolsa.cargarSistema();
-					
-					boolean existeAdmin = false;
+	            try {
+	                for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+	                    if ("Nimbus".equals(info.getName())) {
+	                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
+	                        break;
+	                    }
+	                }
 
+	                Bolsa.cargarSistema();
+	                
+	                boolean existeAdmin = false;
 	                for (Usuario u : Bolsa.getBolsa().losUsuarios) {
 	                    if (u.getRol().equalsIgnoreCase("Admin")) {
 	                        existeAdmin = true;
 	                        break;
 	                    }
 	                }
-	                
 	                if (!existeAdmin) {
-	                    String idAdmin = Bolsa.getBolsa().generarIdUsuarios();
-	                    Usuario adminDefecto = new Usuario(idAdmin, "admin", "admin", "Admin");
+	                    Usuario adminDefecto = new Usuario(Bolsa.getBolsa().generarIdUsuarios(), "admin", "admin", "Admin");
 	                    Bolsa.getBolsa().registrarUsuario(adminDefecto);
-	                    Bolsa.guardarSistema(); 
-	                    System.out.println("Sistema inicializado: Creado usuario admin por defecto.");
 	                }
-					
-					Thread hiloDeOfertas = new Thread(new HiloOfertas());
-					hiloDeOfertas.setDaemon(true);
-					hiloDeOfertas.start();
-					
-					Thread hiloDeSolicitudes = new Thread(new HiloSolicitudes());
-					hiloDeSolicitudes.setDaemon(true);
-					hiloDeSolicitudes.start();
-					
-					Login frame = new Login();
-					frame.setVisible(true);
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+
+	                if (Bolsa.getBolsa().lasEmpresas.isEmpty()) {
+	                    
+	                    // empresas de prueba
+	                    Bolsa.getBolsa().registrarEmpresa("130123456", null, "InnovaTech Solutions", "Santiago");
+	                    Bolsa.getBolsa().registrarEmpresa("130987654", null, "Agroindustrias del Cibao", "La Vega");
+	                    
+	                    logico.Empresa emp1 = Bolsa.getBolsa().lasEmpresas.get(0);
+	                    logico.Empresa emp2 = Bolsa.getBolsa().lasEmpresas.get(1);
+
+	                    // usuarios por defecto vinculado
+	                    Usuario uEmp1 = new Usuario(Bolsa.getBolsa().generarIdUsuarios(), "innova@tech.com", "1234", "Empresa");
+	                    uEmp1.setPerfilE(emp1);
+	                    Usuario uEmp2 = new Usuario(Bolsa.getBolsa().generarIdUsuarios(), "agro@cibao.com", "1234", "Empresa");
+	                    uEmp2.setPerfilE(emp2);
+	                    Bolsa.getBolsa().registrarUsuario(uEmp1);
+	                    Bolsa.getBolsa().registrarUsuario(uEmp2);
+
+	                    // ofertas por defecto para pruebas
+	                    java.util.ArrayList<String> reqInnova = new java.util.ArrayList<>();
+	                    reqInnova.add("Java"); reqInnova.add("Bases de Datos");
+	                    Bolsa.getBolsa().crearOferta(emp1, "Desarrollador Backend", "Programación en Java", 40000, 60000, "Santiago", false, false, "Universitario", 50.0f, 2, 0, "", reqInnova);
+	                    
+	                    java.util.ArrayList<String> reqAgro = new java.util.ArrayList<>();
+	                    reqAgro.add("Redes");
+	                    Bolsa.getBolsa().crearOferta(emp2, "Técnico de Redes", "Mantenimiento de infraestructura", 20000, 30000, "La Vega", true, false, "Tecnico", 40.0f, 1, 2, "Telecomunicaciones", reqAgro);
+
+	                    // personas por defecto
+	                    Usuario uPer1 = new Usuario(Bolsa.getBolsa().generarIdUsuarios(), "juan@mail.com", "1234", "Persona");
+	                    logico.Universitario per1 = new logico.Universitario(Bolsa.getBolsa().generarIdPersonas(), "031-123", "Juan Pérez", uPer1, 45000f, false, false, "Santiago", "M", "Ing. Ciencias de la Computación");
+	                    uPer1.setPerfilP(per1);
+	                    
+	                    Usuario uPer2 = new Usuario(Bolsa.getBolsa().generarIdUsuarios(), "maria@mail.com", "1234", "Persona");
+	                    logico.Tecnico per2 = new logico.Tecnico(Bolsa.getBolsa().generarIdPersonas(), "047-456", "María González", uPer2, 25000f, true, true, "Santiago", "F", "Telecomunicaciones", 3);
+	                    uPer2.setPerfilP(per2);
+	                    
+	                    Bolsa.getBolsa().registraPersona(per1);
+	                    Bolsa.getBolsa().registraPersona(per2);
+	                    Bolsa.getBolsa().registrarUsuario(uPer1);
+	                    Bolsa.getBolsa().registrarUsuario(uPer2);
+
+	                    // contratacion por defecto
+	                    per2.setContratado(true);
+	                    emp2.contratarCandidato(per2);
+
+	                    Bolsa.guardarSistema();
+	                    System.out.println("Datos de prueba generados exitosamente.");
+	                }
+
+	                Thread hiloDeOfertas = new Thread(new hilos.HiloOfertas());
+	                hiloDeOfertas.setDaemon(true);
+	                hiloDeOfertas.start();
+	                
+	                Thread hiloDeSolicitudes = new Thread(new hilos.HiloSolicitudes());
+	                hiloDeSolicitudes.setDaemon(true);
+	                hiloDeSolicitudes.start();
+	                
+	                Login frame = new Login();
+	                frame.setVisible(true);
+	                
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    });
 	}
 
 	/**
