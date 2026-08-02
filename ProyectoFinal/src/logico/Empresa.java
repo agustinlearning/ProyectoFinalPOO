@@ -1,6 +1,7 @@
 package logico;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Empresa implements Serializable {
 
@@ -14,6 +15,7 @@ public class Empresa implements Serializable {
 	private String razonSocial;
 	private float kpi;
 	private String ubicacion;
+	private ArrayList<Persona> candidatosContratados;
 	
 	public Empresa(String id, String rnc, Representante representante, String razonSocial, String ubicacion) {
 		super();
@@ -22,6 +24,7 @@ public class Empresa implements Serializable {
 		this.representante = representante;
 		this.razonSocial = razonSocial;
 		this.ubicacion = ubicacion;
+		this.candidatosContratados = new ArrayList<>();
 	}
 	
 	public String getRnc() {
@@ -56,5 +59,17 @@ public class Empresa implements Serializable {
 	}
 	public String getId() {
 		return id;
+	}
+
+	public ArrayList<Persona> getCandidatosContratados() {
+		return candidatosContratados;
+	}
+
+	public void setCandidatosContratados(ArrayList<Persona> candidatosContratados) {
+		this.candidatosContratados = candidatosContratados;
+	}
+	
+	public void contratarCandidato(Persona candidato) {
+	    candidatosContratados.add(candidato);
 	}
 }
