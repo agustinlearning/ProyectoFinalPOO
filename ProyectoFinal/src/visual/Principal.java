@@ -62,144 +62,175 @@ public class Principal extends JFrame {
 	 * Create the frame.
 	 */
 	public Principal(Sesion sesion) {
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				JOptionPane.showMessageDialog(null, "No tiene un perfil, vamos a crear uno");
-				Bolsa.guardarSistema();
-			}
-		});
-		mySesion = sesion;
-		
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 834, 529);
-		setVisible(false);
-		
-		menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		mnEmpleados = new JMenu("Solicitudes");
-		mnEmpleados.setEnabled(false);
-		mnEmpleados.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		menuBar.add(mnEmpleados);
-		
-		mntmCrearSolicitud = new JMenuItem("Registrar");
-		mntmCrearSolicitud.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		mntmCrearSolicitud.setHorizontalAlignment(SwingConstants.CENTER);
-		mnEmpleados.add(mntmCrearSolicitud);
-		
-		
-		mntmNewMenuItem = new JMenuItem("Listar");
-		mnEmpleados.add(mntmNewMenuItem);
-		
-		mnOfertas = new JMenu("Ofertas");
-		mnOfertas.setEnabled(false);
-		menuBar.add(mnOfertas);
-		
-		mntmRegistrarOferta = new JMenuItem("Registrar");
-		mntmRegistrarOferta.setHorizontalAlignment(SwingConstants.LEFT);
-		mnOfertas.add(mntmRegistrarOferta);
-		
-		mntmListarOfertas = new JMenuItem("Listar");
-		mnOfertas.add(mntmListarOfertas);
-		
-		mnPerfil = new JMenu("Perfil");
-		menuBar.add(mnPerfil);
-		
-		JMenuItem mntmMostrarPerfil = new JMenuItem("Ver perfil");
-		mntmMostrarPerfil.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(sesion.getUser().getPerfilE()== null && sesion.getUser().getPerfilP()== null)
-				{
-					JOptionPane.showMessageDialog(null, "No tiene un perfil, vamos a crear uno");
-					if(sesion.getUser().getRol().equalsIgnoreCase("Persona"))
-					{
-						RegPersona regPersona = new RegPersona(sesion.getUser());
-						regPersona.setVisible(true);
-						regPersona.setModal(true);
-					}
-					if(sesion.getUser().getRol().equalsIgnoreCase("Empresa"))
-					{
-						RegEmpresa regEmpresa = new RegEmpresa();
-						regEmpresa.setVisible(true);
-						regEmpresa.setModal(true);
-					}
-				}
-				if(sesion.getUser().getPerfilE() == null && sesion.getUser().getPerfilP()!= null)
-				{
-					
-				}
-				if(sesion.getUser().getPerfilE() != null && sesion.getUser().getPerfilP()== null)
-				{
-					
-				}
-			}
-		});
-		mnPerfil.add(mntmMostrarPerfil);
-		
-		mnAdministracion = new JMenu("Admin");
-		menuBar.add(mnAdministracion);
-		if(sesion.getUser().getRol().equalsIgnoreCase("admin"))
-		{
-			mnAdministracion.setVisible(true);
-		}
-		else
-		{
-			mnAdministracion.setVisible(false);
-		}
-		
-		
-		mntmListarUsuarios = new JMenuItem("Listar usuarios");
-		mntmListarUsuarios.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ListarUsuarios listar = new ListarUsuarios();
-				listar.setVisible(true);
-				listar.setModal(true);
-			}
-		});
-		mnAdministracion.add(mntmListarUsuarios);
-		
-		mListarEmpresa = new JMenuItem("Listar Empresas");
-		mListarEmpresa.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ListarEmpresas listarEmpresa = new ListarEmpresas();
-				listarEmpresa.setVisible(true);
-				listarEmpresa.setModal(true);
-			}
-		});
-		mnAdministracion.add(mListarEmpresa);
-		
-		mntmCrearRespaldo = new JMenuItem("Crear Respaldo");
-		mntmCrearRespaldo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Bolsa.guardarSistema();
-			}
-		});
-		mnAdministracion.add(mntmCrearRespaldo);
-		
-		mntmDashboad = new JMenuItem("Dashboad");
-		mntmDashboad.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Dashboard dash = new Dashboard();
-		        dash.setVisible(true);
-			}
-		});
-		mnAdministracion.add(mntmDashboad);
-		
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-		
-		panel = new JPanel();
-		contentPane.add(panel, BorderLayout.CENTER);
+	    addWindowListener(new WindowAdapter() {
+	        @Override
+	        public void windowClosing(WindowEvent e) {
+	            Bolsa.guardarSistema();
+	        }
+	    });
+	    mySesion = sesion;
+	    
+	    setLocationRelativeTo(null);
+	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    setBounds(100, 100, 834, 529);
+	    setVisible(false);
+	    
+	    menuBar = new JMenuBar();
+	    setJMenuBar(menuBar);
+	    
+	    mnEmpleados = new JMenu("Solicitudes");
+	    if(sesion.getUser().getRol().equalsIgnoreCase("Persona") || sesion.getUser().getRol().equalsIgnoreCase("Admin")) {
+	        mnEmpleados.setEnabled(true);
+	    }
+	    menuBar.add(mnEmpleados);
+	    
+	    mntmCrearSolicitud = new JMenuItem("Registrar Solicitud");
+	    mntmCrearSolicitud.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            JOptionPane.showMessageDialog(null, "Abrir ventana de Registrar Solicitud (En desarrollo)");
+	        }
+	    });
+	    mnEmpleados.add(mntmCrearSolicitud);
+	    
+	    mntmNewMenuItem = new JMenuItem("Listar Solicitud");
+	    mntmNewMenuItem.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            JOptionPane.showMessageDialog(null, "Abrir ventana de Listar Solicitudes (En desarrollo)");
+	        }
+	    });
+	    mnEmpleados.add(mntmNewMenuItem);
+	    
+	    // MENÚ DE OFERTAS
+	    mnOfertas = new JMenu("Ofertas");
+	    if(sesion.getUser().getRol().equalsIgnoreCase("Empresa") || sesion.getUser().getRol().equalsIgnoreCase("Admin")) {
+	        mnOfertas.setEnabled(true);
+	    }
+	    menuBar.add(mnOfertas);
+	    
+	    mntmRegistrarOferta = new JMenuItem("Registrar Oferta");
+	    mntmRegistrarOferta.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            JOptionPane.showMessageDialog(null, "Abrir ventana de Registrar Oferta (En desarrollo)");
+	        }
+	    });
+	    mnOfertas.add(mntmRegistrarOferta);
+	    
+	    mntmListarOfertas = new JMenuItem("Listar Ofertas");
+	    mntmListarOfertas.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            JOptionPane.showMessageDialog(null, "Abrir ventana de Listar Ofertas (En desarrollo)");
+	        }
+	    });
+	    mnOfertas.add(mntmListarOfertas);
+	    
+	    // MENÚ PERFIL
+	    mnPerfil = new JMenu("Perfil");
+	    menuBar.add(mnPerfil);
+	    
+	    JMenuItem mntmMostrarPerfil = new JMenuItem("Ver perfil");
+	    mntmMostrarPerfil.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            if(sesion.getUser().getPerfilE() == null && sesion.getUser().getPerfilP() == null) {
+	                JOptionPane.showMessageDialog(null, "No tiene un perfil, vamos a crear uno");
+	                if(sesion.getUser().getRol().equalsIgnoreCase("Persona")) {
+	                    RegPersona regPersona = new RegPersona(sesion.getUser());
+	                    regPersona.setVisible(true);
+	                } else if(sesion.getUser().getRol().equalsIgnoreCase("Empresa")) {
+	                    RegEmpresa regEmpresa = new RegEmpresa();
+	                    regEmpresa.setVisible(true);
+	                }
+	            } 
+	            else if(sesion.getUser().getPerfilE() != null) {
+	                // Si es empresa y ya tiene perfil, muestra sus datos
+	                logico.Empresa emp = sesion.getUser().getPerfilE();
+	                JOptionPane.showMessageDialog(null, "Perfil de Empresa:\n" +
+	                        "RNC: " + emp.getRnc() + "\n" +
+	                        "Razón Social: " + emp.getRazonSocial() + "\n" +
+	                        "Ubicación: " + emp.getUbicacion(), "Mi Perfil", JOptionPane.INFORMATION_MESSAGE);
+	            } 
+	            else if(sesion.getUser().getPerfilP() != null) {
+	                // Si es persona y ya tiene perfil, muestra sus datos
+	                logico.Persona per = sesion.getUser().getPerfilP();
+	                JOptionPane.showMessageDialog(null, "Perfil de Persona:\n" +
+	                        "Nombre: " + per.getNombre() + "\n" +
+	                        "Cédula: " + per.getCedula() + "\n" +
+	                        "Provincia: " + per.getProvincia(), "Mi Perfil", JOptionPane.INFORMATION_MESSAGE);
+	            }
+	        }
+	    });
+	    mnPerfil.add(mntmMostrarPerfil);
+	    
+	    // MENÚ ADMINISTRACIÓN
+	    mnAdministracion = new JMenu("Admin");
+	    menuBar.add(mnAdministracion);
+	    if(sesion.getUser().getRol().equalsIgnoreCase("Admin")) {
+	        mnAdministracion.setVisible(true);
+	    } else {
+	        mnAdministracion.setVisible(false);
+	    }
+	    
+	    mntmListarUsuarios = new JMenuItem("Listar usuarios");
+	    mntmListarUsuarios.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            ListarUsuarios listar = new ListarUsuarios();
+	            listar.setVisible(true);
+	        }
+	    });
+	    mnAdministracion.add(mntmListarUsuarios);
+	    
+	    mListarEmpresa = new JMenuItem("Listar Empresas");
+	    mListarEmpresa.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            ListarEmpresas listarEmpresa = new ListarEmpresas();
+	            listarEmpresa.setVisible(true);
+	        }
+	    });
+	    mnAdministracion.add(mListarEmpresa);
+	    
+	    mntmCrearRespaldo = new JMenuItem("Guardar Localmente");
+	    mntmCrearRespaldo.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            Bolsa.guardarSistema();
+	            JOptionPane.showMessageDialog(null, "Datos guardados en disco local.");
+	        }
+	    });
+	    mnAdministracion.add(mntmCrearRespaldo);
+
+	    JMenuItem mntmEnviarServidor = new JMenuItem("Enviar al Servidor (Profesor)");
+	    mntmEnviarServidor.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            String ip = JOptionPane.showInputDialog(null, "Ingrese la IP del servidor:", "localhost");
+	            String puertoString = JOptionPane.showInputDialog(null, "Ingrese el puerto:", "7000");
+
+	            if (ip != null && puertoString != null) {
+	                try {
+	                    int puerto = Integer.parseInt(puertoString.trim());
+	                    servidor.Cliente.enviarRespaldoAlServidor(ip, puerto); 
+	                    JOptionPane.showMessageDialog(null, "Intento de envío finalizado. Verifique consola.");
+	                } catch (NumberFormatException ex) {
+	                    JOptionPane.showMessageDialog(null, "El puerto debe ser un número.");
+	                }
+	            }
+	        }
+	    });
+	    mnAdministracion.add(mntmEnviarServidor);
+	    
+	    mntmDashboad = new JMenuItem("Dashboard");
+	    mntmDashboad.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            Dashboard dash = new Dashboard();
+	            dash.setVisible(true);
+	        }
+	    });
+	    mnAdministracion.add(mntmDashboad);
+	    
+	    contentPane = new JPanel();
+	    contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+	    contentPane.setLayout(new BorderLayout(0, 0));
+	    setContentPane(contentPane);
+	    
+	    panel = new JPanel();
+	    contentPane.add(panel, BorderLayout.CENTER);
 	}
 
 }
