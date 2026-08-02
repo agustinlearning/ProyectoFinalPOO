@@ -153,6 +153,7 @@ public class Bolsa implements Serializable{
 		int puntosAcumulados=0;
 		for(Persona per : lasPersonas) {
 			
+			if(per.isContratado()) { continue; }
 			if(oferta.isNeedLicencia() && !per.isLicencia()) {continue;}
 			if(oferta.getTipoCandidato().equalsIgnoreCase("universitario") && (per instanceof Obrero)) {continue;}
 			

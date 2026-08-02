@@ -117,8 +117,9 @@ public class MostrarCandidatos extends JDialog {
 		btnElegir.setEnabled(false);
 		btnElegir.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        if (selected != null) {
+		        if (selected != null && empresaLogueada != null) {
 		            if (empresaLogueada != null) {
+		            	selected.setContratado(true);
 		                empresaLogueada.contratarCandidato(selected);
 		                Bolsa.guardarSistema();
 		                
