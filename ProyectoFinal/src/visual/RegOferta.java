@@ -187,6 +187,8 @@ public class RegOferta extends JDialog {
         panelRequisitos.add(scrollPane);
         
         txtHabilidades = new JTextArea();
+        txtHabilidades.setLineWrap(true);
+        txtHabilidades.setWrapStyleWord(true);
         txtHabilidades.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         scrollPane.setViewportView(txtHabilidades);
         

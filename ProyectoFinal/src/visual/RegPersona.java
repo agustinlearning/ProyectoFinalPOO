@@ -215,6 +215,8 @@ public class RegPersona extends JDialog {
 			panelVariable.add(lblHabilidades);
 			
 			txtHabilidades = new JTextArea();
+			txtHabilidades.setLineWrap(true);
+			txtHabilidades.setWrapStyleWord(true);
 			txtHabilidades.setBounds(140, 25, 341, 59);
 			txtHabilidades.setVisible(true);
 			panelVariable.add(txtHabilidades);
