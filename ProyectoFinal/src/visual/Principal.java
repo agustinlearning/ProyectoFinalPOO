@@ -179,7 +179,7 @@ public class Principal extends JFrame {
 		mntmCrearRespaldo = new JMenuItem("Crear Respaldo");
 		mntmCrearRespaldo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Bolsa.getBolsa().guardarSistema();
+				Bolsa.guardarSistema();
 			}
 		});
 		mnAdministracion.add(mntmCrearRespaldo);
@@ -187,7 +187,8 @@ public class Principal extends JFrame {
 		mntmDashboad = new JMenuItem("Dashboad");
 		mntmDashboad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Dashboard dash = new Dashboard();
+		        dash.setVisible(true);
 			}
 		});
 		mnAdministracion.add(mntmDashboad);
