@@ -131,6 +131,15 @@ public class Singup extends JFrame {
 		        String email = txtEmail.getText().trim();
 		        String password = txtPassword.getText();
 
+		        //Verificar si el correo ya existe en el sistema
+		        boolean correoRegistrado = false;
+		        for (Usuario u : Bolsa.getBolsa().losUsuarios) {
+		            if (u.getEmail().equalsIgnoreCase(email) || u.getUsername().equalsIgnoreCase(email)) {
+		                correoRegistrado = true;
+		                break;
+		            }
+		        }
+
 		        if(email.isEmpty() || password.isEmpty()) {
 		            JOptionPane.showMessageDialog(null, "Termine de llenar los campos", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
 		        }
@@ -138,6 +147,12 @@ public class Singup extends JFrame {
 		            JOptionPane.showMessageDialog(null, 
 		                "El formato del correo es inválido.\nAsegúrese de que contenga un '@' y termine en '.com'.", 
 		                "Error de Formato", 
+		                JOptionPane.ERROR_MESSAGE);
+		        }
+		        else if (correoRegistrado) {
+		            JOptionPane.showMessageDialog(null, 
+		                "Este correo electrónico ya se encuentra registrado en el sistema.\nPor favor, inicie sesión o utilice otro correo.", 
+		                "Usuario Existente", 
 		                JOptionPane.ERROR_MESSAGE);
 		        }
 		        else {
