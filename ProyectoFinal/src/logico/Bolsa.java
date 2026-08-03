@@ -208,6 +208,38 @@ public class Bolsa implements Serializable{
 		return null;
 	}
 	
+	public Empresa getEmpresaConMasEmpleados()
+	{
+		int mayorCantidad = 0;
+		int temp;
+		Empresa elegida = null;
+		for (Empresa empresa : lasEmpresas) {
+			temp = empresa.getCandidatosContratados().size();
+			if(temp > mayorCantidad)
+			{				
+				mayorCantidad = temp;
+				elegida = empresa;
+			}
+		}
+		return elegida;
+		
+	}
+
+	public Persona getEmpleadoMejorPagado() {
+		float mayor = 0;
+		Persona mejorPagado = null;
+		for (Empresa empresa : lasEmpresas) {
+			for (Persona empleado : empresa.getCandidatosContratados()) {
+				if(empleado.getAspSalarial() > mayor)
+				{
+					mejorPagado = empleado;
+					mayor = mejorPagado.getAspSalarial();
+				}
+			}
+		}
+		return mejorPagado;
+	}
+	
 	
 	
 	
