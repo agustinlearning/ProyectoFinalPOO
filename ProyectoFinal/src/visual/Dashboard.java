@@ -1,48 +1,100 @@
 package visual;
 
 import java.awt.BorderLayout;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import logico.Bolsa;
+import logico.Empresa;
+import logico.Persona;
 
-public class Dashboard extends JDialog {
+import java.awt.FlowLayout;
+import javax.swing.BoxLayout;
+import javax.swing.border.TitledBorder;
 
-    private final JPanel contentPanel = new JPanel();
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
 
-    public Dashboard() {
-        setModal(true);
-        setTitle("Resumen del Sistema");
-        setBounds(100, 100, 500, 300);
-        setLocationRelativeTo(null);
-        getContentPane().setLayout(new BorderLayout());
-        contentPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
-        getContentPane().add(contentPanel, BorderLayout.CENTER);
-        contentPanel.setLayout(new GridLayout(2, 2, 15, 15));
-
-        contentPanel.add(crearPanelMetrica("Total de Usuarios", Bolsa.getBolsa().losUsuarios.size()));
-        contentPanel.add(crearPanelMetrica("Total de Empresas", Bolsa.getBolsa().lasEmpresas.size()));
-        contentPanel.add(crearPanelMetrica("Personas Registradas", Bolsa.getBolsa().lasPersonas.size()));
+public class Dashboard extends JDialog {        
+        JPanel panel;
+        private JLabel label;
+        private JLabel lblNewLabel;
+        public Dashboard(){
+            setTitle("Dashboard");
+            setSize(800,398);
+            setLocationRelativeTo(null);
+            setVisible(true);
+            init();
+        }
+     
+        private void init() {
+            panel = new JPanel();
+            getContentPane().add(panel);
+            // Fuente de Datos
+            DefaultPieDataset data = new DefaultPieDataset();
+            data.setValue("Total de Usuarios", Bolsa.getBolsa().losUsuarios.size());
+            data.setValue("Total de Empresas", Bolsa.getBolsa().lasEmpresas.size());
+            data.setValue("Personas Registradas", Bolsa.getBolsa().lasPersonas.size());
+     
+            // Creando el Grafico
+            JFreeChart chart = ChartFactory.createPieChart(
+             "Estadisticas generales", 
+             data, 
+             true, 
+             true, 
+             false);
+            panel.setLayout(null);
+     
+            // Crear el Panel del Grafico con ChartPanel
+            ChartPanel chartPanel = new ChartPanel(chart);
+            chartPanel.setBounds(15, 16, 525, 313);
+            panel.add(chartPanel);
+            
+            lblNewLabel = new JLabel("Empleado mejor pagado");
+            lblNewLabel.setBounds(555, 79, 208, 20);
+            panel.add(lblNewLabel);
+            
+            label = new JLabel("Empleado mejor pagado");
+            Persona empleado = Bolsa.getBolsa().getEmpleadoMejorPagado();
+            if(empleado != null)
+            {
+            	JLabel lblNewLabel_1 = new JLabel("" + empleado.getNombre());
+                lblNewLabel_1.setBounds(555, 132, 175, 20);
+                panel.add(lblNewLabel_1);
+            }
+            else
+            {
+            	JLabel lblNewLabel_1 = new JLabel("No existe");
+                lblNewLabel_1.setBounds(555, 132, 175, 20);
+                panel.add(lblNewLabel_1);
+            }
+            label.setBounds(555, 197, 208, 20);
+            panel.add(label);
+            
+            
+            Empresa empresa = Bolsa.getBolsa().getEmpresaConMasEmpleados();
+            if(empresa != null)
+            {
+            	JLabel label_1 = new JLabel("" + empresa.getRnc());
+            	label_1.setBounds(555, 230, 175, 20);
+                panel.add(label_1);
+            }
+            else
+            {
+            	JLabel label_1 = new JLabel("No existe");
+            	label_1.setBounds(555, 230, 175, 20);
+                panel.add(label_1);
+            }
+        }
         
-        //recordar añadir otra estadística: ej (la lista de ofertas o solicitudes) mas tarde
-        contentPanel.add(crearPanelMetrica("Ofertas Activas", 0)); 
-    }
-
-    private JPanel crearPanelMetrica(String titulo, int valor) {
-        JPanel panel = new JPanel();
-        panel.setBorder(new TitledBorder(null, titulo, TitledBorder.LEADING, TitledBorder.TOP, new Font("Segoe UI", Font.BOLD, 12), null));
-        panel.setLayout(new BorderLayout(0, 0));
-        
-        JLabel lblValor = new JLabel(String.valueOf(valor));
-        lblValor.setHorizontalAlignment(SwingConstants.CENTER);
-        lblValor.setFont(new Font("Segoe UI", Font.BOLD, 24));
-        panel.add(lblValor, BorderLayout.CENTER);
-        
-        return panel;
-    }
+        public static void main(String args[]){
+            new Dashboard().setVisible(true);
+        }
 }
