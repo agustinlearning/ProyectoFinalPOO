@@ -113,13 +113,15 @@ public class Principal extends JFrame {
 	    mntmRegistrarOferta = new JMenuItem("Registrar Oferta");
 	    mntmRegistrarOferta.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
-	            logico.Empresa miEmpresa = mySesion.getUser().getPerfilE();
-	            if(miEmpresa != null) {
+	            String rol = mySesion.getUser().getRol();
+	            
+	            if(rol.equalsIgnoreCase("Empresa") || rol.equalsIgnoreCase("Admin")) {
+	                logico.Empresa miEmpresa = mySesion.getUser().getPerfilE();
 	                RegOferta ventanaRegistro = new RegOferta(miEmpresa);
 	                ventanaRegistro.setVisible(true);
 	            } else {
 	                JOptionPane.showMessageDialog(null, 
-	                    "Debe tener un perfil de tipo Empresa activo para crear ofertas.", 
+	                    "Solo los usuarios de tipo Empresa o Admin pueden registrar ofertas.", 
 	                    "Acceso Denegado", 
 	                    JOptionPane.WARNING_MESSAGE);
 	            }
@@ -130,13 +132,15 @@ public class Principal extends JFrame {
 	    mntmListarOfertas = new JMenuItem("Listar Ofertas");
 	    mntmListarOfertas.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
-	            logico.Empresa miEmpresa = mySesion.getUser().getPerfilE();
-	            if(miEmpresa != null) {
+	            String rol = mySesion.getUser().getRol();
+	            
+	            if(rol.equalsIgnoreCase("Empresa") || rol.equalsIgnoreCase("Admin")) {
+	                logico.Empresa miEmpresa = mySesion.getUser().getPerfilE();
 	                ListarOfertas listarMisOfertas = new ListarOfertas(miEmpresa);
 	                listarMisOfertas.setVisible(true);
 	            } else {
 	                JOptionPane.showMessageDialog(null, 
-	                    "Debe tener un perfil de tipo Empresa activo para gestionar ofertas.", 
+	                    "Solo los usuarios de tipo Empresa o Admin pueden listar ofertas.", 
 	                    "Acceso Denegado", 
 	                    JOptionPane.WARNING_MESSAGE);
 	            }
@@ -151,31 +155,33 @@ public class Principal extends JFrame {
 	    JMenuItem mntmMostrarPerfil = new JMenuItem("Ver perfil");
 	    mntmMostrarPerfil.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
-	            if(sesion.getUser().getPerfilE() == null && sesion.getUser().getPerfilP() == null) {
-	                JOptionPane.showMessageDialog(null, "No tiene un perfil, vamos a crear uno");
-	                if(sesion.getUser().getRol().equalsIgnoreCase("Persona")) {
-	                    RegPersona regPersona = new RegPersona(sesion.getUser());
-	                    regPersona.setVisible(true);
-	                } else if(sesion.getUser().getRol().equalsIgnoreCase("Empresa")) {
-	                    RegEmpresa regEmpresa = new RegEmpresa();
+	            String rol = sesion.getUser().getRol();
+
+	            if(rol.equalsIgnoreCase("Empresa")) {
+	                if(sesion.getUser().getPerfilE() == null) {
+	                    JOptionPane.showMessageDialog(null, "No tiene un perfil de Empresa, vamos a crear uno");
+	                    RegEmpresa regEmpresa = new RegEmpresa(sesion.getUser());
 	                    regEmpresa.setVisible(true);
+	                } else {
+	                    logico.Empresa emp = sesion.getUser().getPerfilE();
+	                    JOptionPane.showMessageDialog(null, "Perfil de Empresa:\n" +
+	                            "RNC: " + emp.getRnc() + "\n" +
+	                            "Razón Social: " + emp.getRazonSocial() + "\n" +
+	                            "Ubicación: " + emp.getUbicacion(), "Mi Perfil", JOptionPane.INFORMATION_MESSAGE);
 	                }
 	            } 
-	            else if(sesion.getUser().getPerfilE() != null) {
-	                // Si es empresa y ya tiene perfil, muestra sus datos
-	                logico.Empresa emp = sesion.getUser().getPerfilE();
-	                JOptionPane.showMessageDialog(null, "Perfil de Empresa:\n" +
-	                        "RNC: " + emp.getRnc() + "\n" +
-	                        "Razón Social: " + emp.getRazonSocial() + "\n" +
-	                        "Ubicación: " + emp.getUbicacion(), "Mi Perfil", JOptionPane.INFORMATION_MESSAGE);
-	            } 
-	            else if(sesion.getUser().getPerfilP() != null) {
-	                // Si es persona y ya tiene perfil, muestra sus datos
-	                logico.Persona per = sesion.getUser().getPerfilP();
-	                JOptionPane.showMessageDialog(null, "Perfil de Persona:\n" +
-	                        "Nombre: " + per.getNombre() + "\n" +
-	                        "Cédula: " + per.getCedula() + "\n" +
-	                        "Provincia: " + per.getProvincia(), "Mi Perfil", JOptionPane.INFORMATION_MESSAGE);
+	            else if(rol.equalsIgnoreCase("Persona")) {
+	                if(sesion.getUser().getPerfilP() == null) {
+	                    JOptionPane.showMessageDialog(null, "No tiene un perfil de Persona, vamos a crear uno");
+	                    RegPersona regPersona = new RegPersona(sesion.getUser());
+	                    regPersona.setVisible(true);
+	                } else {
+	                    logico.Persona per = sesion.getUser().getPerfilP();
+	                    JOptionPane.showMessageDialog(null, "Perfil de Persona:\n" +
+	                            "Nombre: " + per.getNombre() + "\n" +
+	                            "Cédula: " + per.getCedula() + "\n" +
+	                            "Provincia: " + per.getProvincia(), "Mi Perfil", JOptionPane.INFORMATION_MESSAGE);
+	                }
 	            }
 	        }
 	    });

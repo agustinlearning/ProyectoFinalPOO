@@ -124,14 +124,23 @@ public class ListarOfertas extends JDialog {
     private void loadOfertas() {
         model.setRowCount(0);
         row = new Object[model.getColumnCount()];
+
+        if (empresaLogueada == null || empresaLogueada.getRnc() == null) {
+            JOptionPane.showMessageDialog(null, "No hay un perfil de empresa asociado para filtrar sus ofertas.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         
         for (Oferta oferta : Bolsa.getBolsa().lasOfertas) {
-            if (oferta.getEmpresa().getRnc().equalsIgnoreCase(empresaLogueada.getRnc())) {
-                row[0] = oferta.getId();
-                row[1] = oferta.getTitulo();
-                row[2] = oferta.getTipoCandidato();
-                row[3] = "$" + oferta.getSalarioMin();
-                model.addRow(row);
+            if (oferta.getEmpresa() != null && oferta.getEmpresa().getRnc() != null) {
+                
+
+                if (oferta.getEmpresa().getRnc().equalsIgnoreCase(empresaLogueada.getRnc())) {
+                    row[0] = oferta.getId();
+                    row[1] = oferta.getTitulo();
+                    row[2] = oferta.getTipoCandidato();
+                    row[3] = "$" + oferta.getSalarioMin();
+                    model.addRow(row);
+                }
             }
         }
     }

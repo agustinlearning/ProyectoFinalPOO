@@ -27,13 +27,14 @@ public class RegEmpresa extends JDialog {
 	private JTextField txtRnc;
 	private JTextField txtUbicacion;
 	private JTextField txtRazonSocial;
+	private logico.Usuario usuarioActual;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			RegEmpresa dialog = new RegEmpresa();
+			RegEmpresa dialog = new RegEmpresa(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -44,7 +45,8 @@ public class RegEmpresa extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public RegEmpresa() {
+	public RegEmpresa(logico.Usuario user) {
+		this.usuarioActual = user;
 		setResizable(false);
 		setModal(true);
 		setTitle("Crear Perfil");
@@ -94,28 +96,64 @@ public class RegEmpresa extends JDialog {
 			{
 				JButton okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						if(txtRnc.getText().isEmpty() || txtUbicacion.getText().isEmpty() || txtRazonSocial.getText().isEmpty())
-						{
-							JOptionPane.showMessageDialog(null, "Termine de llenar los campos");
-						}
-						else 
-						{
-							Bolsa.getBolsa().registrarEmpresa(txtRnc.getText(),null,txtRazonSocial.getText(),txtUbicacion.getText());
-							JOptionPane.showMessageDialog(null, "Perfil creado correctamente");
-							dispose();
-						}
-					}
+				    public void actionPerformed(ActionEvent e) {
+				        if(txtRnc.getText().isEmpty() || txtUbicacion.getText().isEmpty() || txtRazonSocial.getText().isEmpty()) {
+				            JOptionPane.showMessageDialog(null, "Termine de llenar los campos");
+				        } else {
+
+				            Bolsa.getBolsa().registrarEmpresa(txtRnc.getText(), null, txtRazonSocial.getText(), txtUbicacion.getText());
+
+				            for (Empresa emp : Bolsa.getBolsa().lasEmpresas) { 
+				                if (emp.getRnc().equalsIgnoreCase(txtRnc.getText())) {
+				                    usuarioActual.setPerfilE(emp); 
+				                    break;
+				                }
+				            }
+				            
+				            logico.Bolsa.guardarSistema(); 
+				            
+				            JOptionPane.showMessageDialog(null, "Perfil creado y guardado permanentemente");
+				            dispose();
+				        }
+				    }
 				});
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
 			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
+			
+			JButton okButton = new JButton("Guardar");
+			okButton.addActionListener(new ActionListener() {
+			    public void actionPerformed(ActionEvent e) {
+			        if(txtRnc.getText().isEmpty() || txtUbicacion.getText().isEmpty() || txtRazonSocial.getText().isEmpty()) {
+			            JOptionPane.showMessageDialog(null, "Termine de llenar los campos");
+			        } else {
+			            // 1. Registra la empresa en el sistema global
+			            Bolsa.getBolsa().registrarEmpresa(txtRnc.getText(), null, txtRazonSocial.getText(), txtUbicacion.getText());
+			            
+			            // 2. Busca la empresa y la enlaza a tu usuario actual
+			            for (Empresa emp : Bolsa.getBolsa().lasEmpresas) { 
+			                if (emp.getRnc().equalsIgnoreCase(txtRnc.getText())) {
+			                    usuarioActual.setPerfilE(emp); 
+			                    break;
+			                }
+			            }
+			            
+			            logico.Bolsa.guardarSistema(); 
+			            
+			            JOptionPane.showMessageDialog(null, "Perfil creado y guardado permanentemente");
+			            dispose();
+			        }
+			    }
+			});
+			okButton.setActionCommand("OK");
+			buttonPane.add(okButton);
+			getRootPane().setDefaultButton(okButton);
+			
+			
+			JButton cancelButton = new JButton("Cancel");
+			cancelButton.setActionCommand("Cancel");
+			buttonPane.add(cancelButton);
+
+			
+			
 		}
 	}
 }

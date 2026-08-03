@@ -21,7 +21,14 @@ public class Obrero extends Persona {
 	}
 
 	public void setHabilidades(ArrayList<String> habilidades) {
-		this.habilidades = habilidades;
+		if (habilidades == null || habilidades.isEmpty()) {
+	        this.habilidades = new ArrayList<>();
+	        
+	        this.habilidades.add("No especificadas");
+	        
+	    } else {
+	        this.habilidades = habilidades;
+	    }
 	}
 	
 
@@ -29,6 +36,7 @@ public class Obrero extends Persona {
 	public int evaluarReqEspec(Oferta oferta) {
 		int total=0, habilidadesCoinciden=0;
 		int habilidadesTotales= oferta.getLasHabilidades().size();
+		
 		for(String habilidadOferta : oferta.getLasHabilidades()) {
 			for(String habilidadObrero : habilidades) {
 				if(habilidadObrero.equalsIgnoreCase(habilidadOferta)) {
@@ -36,7 +44,13 @@ public class Obrero extends Persona {
 				}
 			}
 		}
-		total = (habilidadesCoinciden / habilidadesTotales) * 50;
+		
+		if (habilidadesTotales > 0) {
+			total = (habilidadesCoinciden * 50) / habilidadesTotales;
+		} else {
+			total = 50;
+		}
+		
 		return total;
 	}
 
