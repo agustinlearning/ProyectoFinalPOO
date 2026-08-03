@@ -39,9 +39,9 @@ public class Dashboard extends JDialog {
             getContentPane().add(panel);
             // Fuente de Datos
             DefaultPieDataset data = new DefaultPieDataset();
-            data.setValue("Total de Usuarios", Bolsa.getBolsa().losUsuarios.size());
-            data.setValue("Total de Empresas", Bolsa.getBolsa().lasEmpresas.size());
-            data.setValue("Personas Registradas", Bolsa.getBolsa().lasPersonas.size());
+            data.setValue("Total de Usuarios " + Bolsa.getBolsa().losUsuarios.size(), Bolsa.getBolsa().losUsuarios.size());
+            data.setValue("Total de Empresas " + Bolsa.getBolsa().lasEmpresas.size(), Bolsa.getBolsa().lasEmpresas.size());
+            data.setValue("Personas Registradas " + Bolsa.getBolsa().lasPersonas.size(), Bolsa.getBolsa().lasPersonas.size());
      
             // Creando el Grafico
             JFreeChart chart = ChartFactory.createPieChart(
@@ -61,7 +61,7 @@ public class Dashboard extends JDialog {
             lblNewLabel.setBounds(555, 79, 208, 20);
             panel.add(lblNewLabel);
             
-            label = new JLabel("Empleado mejor pagado");
+            label = new JLabel("Empresa con mas empleados");
             Persona empleado = Bolsa.getBolsa().getEmpleadoMejorPagado();
             if(empleado != null)
             {
