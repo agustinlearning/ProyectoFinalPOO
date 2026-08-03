@@ -1,6 +1,7 @@
 package visual;
 
 import java.awt.BorderLayout;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JDialog;
@@ -18,35 +19,49 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 
-public class Dashboard extends JDialog {
-
-    private final JPanel contentPanel = new JPanel();
-    public Dashboard() {
-        setModal(true);
-        setTitle("Resumen del Sistema");
-        setBounds(100, 100, 723, 477);
-        setLocationRelativeTo(null);
-        getContentPane().setLayout(new BorderLayout());
-        contentPanel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-        getContentPane().add(contentPanel, BorderLayout.CENTER);
-        contentPanel.setLayout(null);
-        getContentPane().add(contentPanel);
-        // Fuente de Datos
-        DefaultPieDataset data = new DefaultPieDataset();
-        data.setValue("Total de Usuarios", Bolsa.getBolsa().losUsuarios.size());
-        data.setValue("Total de Empresas", Bolsa.getBolsa().lasEmpresas.size());
-        data.setValue("Personas Registradas", Bolsa.getBolsa().lasPersonas.size());
- 
-        // Creando el Grafico
-        JFreeChart chart = ChartFactory.createPieChart(
-         "Ejemplo Rapido de Grafico en un ChartFrame", 
-         data, 
-         true, 
-         true, 
-         false);
- 
-        // Crear el Panel del Grafico con ChartPanel
-        ChartPanel chartPanel = new ChartPanel(chart);
-        contentPanel.add(chartPanel);
-    }
+public class Dashboard extends JDialog {        
+        JPanel panel;
+        public Dashboard(){
+            setTitle("Dashboard");
+            setSize(800,600);
+            setLocationRelativeTo(null);
+            setVisible(true);
+            init();
+        }
+     
+        private void init() {
+            panel = new JPanel();
+            getContentPane().add(panel);
+            // Fuente de Datos
+            DefaultPieDataset data = new DefaultPieDataset();
+            data.setValue("Total de Usuarios", Bolsa.getBolsa().losUsuarios.size());
+            data.setValue("Total de Empresas", Bolsa.getBolsa().lasEmpresas.size());
+            data.setValue("Personas Registradas", Bolsa.getBolsa().lasPersonas.size());
+     
+            // Creando el Grafico
+            JFreeChart chart = ChartFactory.createPieChart(
+             "Estadisticas generales", 
+             data, 
+             true, 
+             true, 
+             false);
+            panel.setLayout(null);
+     
+            // Crear el Panel del Grafico con ChartPanel
+            ChartPanel chartPanel = new ChartPanel(chart);
+            chartPanel.setBounds(15, 16, 525, 313);
+            panel.add(chartPanel);
+            
+            JLabel lblNewLabel = new JLabel("Empleado mejor pagado");
+            lblNewLabel.setBounds(555, 16, 208, 20);
+            panel.add(lblNewLabel);
+            
+            JLabel label = new JLabel("Empleado mejor pagado");
+            label.setBounds(555, 119, 208, 20);
+            panel.add(label);
+        }
+        
+        public static void main(String args[]){
+            new Dashboard().setVisible(true);
+        }
 }
