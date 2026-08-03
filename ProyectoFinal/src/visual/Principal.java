@@ -223,14 +223,18 @@ public class Principal extends JFrame {
 	            String ip = JOptionPane.showInputDialog(null, "Ingrese la IP del servidor:", "localhost");
 	            String puertoString = JOptionPane.showInputDialog(null, "Ingrese el puerto:", "7000");
 
-	            if (ip != null && puertoString != null) {
+	            if (ip != null && puertoString != null && !ip.trim().isEmpty() && !puertoString.trim().isEmpty()) {
 	                try {
 	                    int puerto = Integer.parseInt(puertoString.trim());
+	                    
 	                    servidor.Cliente.enviarRespaldoAlServidor(ip, puerto); 
-	                    JOptionPane.showMessageDialog(null, "Intento de envío finalizado. Verifique consola.");
+	                    
+	                    JOptionPane.showMessageDialog(null, "Intento de envío finalizado. Verifique consola para ver detalles de la conexión.");
 	                } catch (NumberFormatException ex) {
-	                    JOptionPane.showMessageDialog(null, "El puerto debe ser un número.");
+	                    JOptionPane.showMessageDialog(null, "Error: El puerto debe ser un número entero.", "Error de Formato", JOptionPane.ERROR_MESSAGE);
 	                }
+	            } else if (ip != null || puertoString != null) {
+	                JOptionPane.showMessageDialog(null, "Operación cancelada. Debe ingresar IP y puerto.", "Datos incompletos", JOptionPane.WARNING_MESSAGE);
 	            }
 	        }
 	    });
